@@ -6,18 +6,18 @@ import scipy.optimize as opt
 import matplotlib.pyplot as plt
 # import scipy.special as sps
 
-def calc_spp_n_eff(eps_d, eps_m):
+def spp_neff(eps_d, eps_m):
 	'''Exact surface plasmon dispersion relation from [3]'''
 	return np.sqrt(eps_d*eps_m/(eps_d+eps_m))
 
-def c_approx_mim_n_eff(eps_d, eps_m, wav, ti):
-	''' Collin's MIM eff index approximation, from [1]'''
+def mim_neff_collin(eps_d, eps_m, wav, ti):
+	'''MIM eff index approximation by Collin, from [1]'''
  	n_eff=np.sqrt(eps_d)*np.sqrt(1+wav/(np.pi*ti*np.sqrt(-1*eps_m))*
 		np.sqrt(1-eps_d/eps_m))
 	return n_eff
 
-def b_approx_mim_n_eff(eps_d, eps_m, wav, ti):
-	''' Baumberg's MIM eff index approximation, from [2]'''
+def mim_neff_sondergaard(eps_d, eps_m, wav, ti):
+	'''MIM eff index approximation by Sondergaard, from [2]'''
 	k_0 = 2*np.pi/wav
 	gamma = ((2*eps_d)/(k_0*ti*eps_m))**2
 	k_ov_k0 = eps_d + (gamma/2)*(1+np.sqrt(1+4*(eps_d-eps_m)/gamma))
@@ -65,7 +65,7 @@ m_eps = (m_n + 1j*m_k)**2
 i_eps = i_n**2
 
 ## Calcualte effective indices
-spp_n_eff = calc_spp_n_eff(i_eps, m_eps)
+spp_n_eff = spp_neff(i_eps, m_eps)
 
 # Calculate propagation constants
 spp_beta = spp_n_eff*k0
