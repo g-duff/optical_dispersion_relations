@@ -4,34 +4,7 @@ import scipy.constants as spc
 import scipy.interpolate as interp
 import scipy.optimize as opt
 import matplotlib.pyplot as plt
-# import scipy.special as sps
-
-def spp_neff(eps_d, eps_m):
-	'''Exact surface plasmon dispersion relation from [3]'''
-	return np.sqrt(eps_d*eps_m/(eps_d+eps_m))
-
-def mim_neff_collin(eps_d, eps_m, wav, ti):
-	'''MIM eff index approximation by Collin, from [1]'''
- 	n_eff=np.sqrt(eps_d)*np.sqrt(1+wav/(np.pi*ti*np.sqrt(-1*eps_m))*
-		np.sqrt(1-eps_d/eps_m))
-	return n_eff
-
-def mim_neff_sondergaard(eps_d, eps_m, wav, ti):
-	'''MIM eff index approximation by Sondergaard, from [2]'''
-	k_0 = 2*np.pi/wav
-	gamma = ((2*eps_d)/(k_0*ti*eps_m))**2
-	k_ov_k0 = eps_d + (gamma/2)*(1+np.sqrt(1+4*(eps_d-eps_m)/gamma))
-	n_eff = np.sqrt(k_ov_k0)
-	return n_eff
-
-def mim_disp(beta, k_0, eps_1, eps_2, w):
-	'''Exact MIM dispersion relation from [3]
-	Find Beta by finding the zeros of the function
-	with the Newton-Raphson process'''
-	k1 = cm.sqrt(beta**2-eps_1*k_0**2)
-	k2 = cm.sqrt(beta**2-eps_2*k_0**2)
-	ze = cm.tanh(k2*w/2)*(k2/eps_2)+k1/(eps_1)
-	return ze
+import plasmonics as pls
 
 ## Dashboard
 
@@ -42,8 +15,8 @@ i_n = 1.45
 t_i = 20e-9
 
 ## Import data
-m_wl, m_n, = np.genfromtxt('ag_n.txt', unpack=True, skip_header=1)
-m_k = np.genfromtxt('ag_k.txt', unpack=True, skip_header=1, usecols=(1))
+m_wl, m_n, = np.genfromtxt('./Dispersion relations/ag_n.txt', unpack=True, skip_header=1)
+m_k = np.genfromtxt('./Dispersion relations/ag_k.txt', unpack=True, skip_header=1, usecols=(1))
 
 # Convert units
 m_wl = m_wl*1e-6	# um to m
@@ -65,7 +38,7 @@ m_eps = (m_n + 1j*m_k)**2
 i_eps = i_n**2
 
 ## Calcualte effective indices
-spp_n_eff = spp_neff(i_eps, m_eps)
+spp_n_eff = pls.spp_neff(i_eps, m_eps)
 
 # Calculate propagation constants
 spp_beta = spp_n_eff*k0
@@ -91,14 +64,14 @@ for t_i in [100e-9, 50e-9, 40e-9, 30e-9, 25e-9, 20e-9]:
 	# Newton-Raphson process
 	aB = zip(newt, k0, m_eps)
 	newt = np.array([
-		opt.newton(mim_disp, a[0], args=(a[1], a[2], i_eps, t_i),
+		opt.newton(pls.mim_disp, a[0], args=(a[1], a[2], i_eps, t_i),
 		maxiter=int(1e6), tol=1e3)
 	 	for a in aB])
 
 	# Output dispersion relation
 
-	disp_ax.plot(newt.real, y, lw=2, label=str(t_i*1e9))
-	index_ax.plot(wl*1e9, newt.real/k0, label=str(t_i*1e9))
+	disp_ax.plot(newt.real, y, lw=2, label=str(t_i*1e9)+'nm')
+	index_ax.plot(wl*1e9, newt.real/k0, label=str(t_i*1e9)+'nm')
 
 disp_ax.set_xlabel(r'Propagation constant $\beta$')
 disp_ax.set_ylabel(r'Energy (eV)')
