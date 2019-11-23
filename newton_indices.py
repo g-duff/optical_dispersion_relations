@@ -7,10 +7,27 @@ import matplotlib.pyplot as plt
 # import scipy.special as sps
 
 def calc_spp_n_eff(eps_d, eps_m):
+	'''Exact surface plasmon dispersion relation from [3]'''
 	return np.sqrt(eps_d*eps_m/(eps_d+eps_m))
 
+def c_approx_mim_n_eff(eps_d, eps_m, wav, ti):
+	''' Collin's MIM eff index approximation, from [1]'''
+ 	n_eff=np.sqrt(eps_d)*np.sqrt(1+wav/(np.pi*ti*np.sqrt(-1*eps_m))*
+		np.sqrt(1-eps_d/eps_m))
+	return n_eff
+
+def b_approx_mim_n_eff(eps_d, eps_m, wav, ti):
+	''' Baumberg's MIM eff index approximation, from [2]'''
+	k_0 = 2*np.pi/wav
+	gamma = ((2*eps_d)/(k_0*ti*eps_m))**2
+	k_ov_k0 = eps_d + (gamma/2)*(1+np.sqrt(1+4*(eps_d-eps_m)/gamma))
+	n_eff = np.sqrt(k_ov_k0)
+	return n_eff
+
 def mim_disp(beta, k_0, eps_1, eps_2, w):
-	''' Minimise to find beta'''
+	'''Exact MIM dispersion relation from [3]
+	Find Beta by finding the zeros of the function
+	with the Newton-Raphson process'''
 	k1 = cm.sqrt(beta**2-eps_1*k_0**2)
 	k2 = cm.sqrt(beta**2-eps_2*k_0**2)
 	ze = cm.tanh(k2*w/2)*(k2/eps_2)+k1/(eps_1)
@@ -95,7 +112,6 @@ disp_ax.legend(loc='lower right')
 
 # index_ax.plot(wl, c_mim_n_eff.real, label='Collin\'s MIM')
 # index_ax.plot(wl, b_mim_n_eff.real, label='Baumberg\'s MIM ')
-
 
 index_ax.set_xlabel('Free space wavelength (nm)')
 index_ax.set_ylabel('Effective refractive index')
