@@ -1,8 +1,5 @@
 ## MIM dispersion relation
 
-Calculates the MIM dispersion relation and effective refractive index
-
-
 Calculates the dispersion of a metal-insulator-metal stack using approximations [1], [2] and the analytical formula [3]. The analytical formula is solved by using the Newton Raphson process in numpy.
 
 
