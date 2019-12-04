@@ -4,7 +4,7 @@ import scipy.constants as spc
 import scipy.interpolate as interp
 import scipy.optimize as opt
 import matplotlib.pyplot as plt
-import plasmonics as pls
+import mim_dispersions as dsp
 
 ## Wavelength range
 wl = 1/np.linspace(1.0/1500, 1.0/350, 100)
@@ -39,7 +39,7 @@ m_k = interp.griddata(m_wl, m_k, wl, method='cubic')
 m_eps, i_eps = (m_n + 1j*m_k)**2, i_n**2
 
 ## Calcualte spp neff
-spp_n_eff = pls.spp_neff(i_eps, m_eps)
+spp_n_eff = dsp.spp_neff(i_eps, m_eps)
 spp_beta = spp_n_eff*k0
 
 k_light_line = i_n*k0
@@ -63,7 +63,7 @@ for t_i in [100e-9, 50e-9, 40e-9, 30e-9, 25e-9, 20e-9]:
 	# Newton-Raphson process
 	newt_args = zip(newt, k0, m_eps)
 	newt = np.array([
-		opt.newton(pls.mim_disp, a[0], args=(a[1], a[2], i_eps, t_i),
+		opt.newton(dsp.mim_disp, a[0], args=(a[1], a[2], i_eps, t_i),
 		maxiter=int(1e6), tol=1e3) for a in newt_args])
 
 	# Plot dispersion relation and effective index
