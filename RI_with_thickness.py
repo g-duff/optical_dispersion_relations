@@ -14,9 +14,9 @@ t_i = np.arange(100e-9, 5e-9, -1e-9)
 i_n = 1.45
 
 ## Metal refractive index and extinction coefficient
-m_wl, m_n, = np.genfromtxt('./Dispersion relations/ag_n.txt',
+m_wl, m_n, = np.genfromtxt('./material_dispersions/ag_n.txt',
 	unpack=True, skip_header=1)
-m_k = np.genfromtxt('./Dispersion relations/ag_k.txt',
+m_k = np.genfromtxt('./material_dispersions/ag_k.txt',
 	unpack=True, skip_header=1, usecols=(1))
 
 # Convert units

@@ -8,20 +8,20 @@ def spp_neff(eps_d, eps_m):
 def mim_neff_collin(eps_d, eps_m, wav, ti):
 	'''MIM eff index approximation by Collin, from [1]
 
-	eps_d: insulator permittivity, 
+	eps_d: insulator permittivity,
 	eps_m: metal permittivity,
 	wav: wavelength,
 	ti: insulator thickness
 
 	n_eff: effective refractive index'''
- 	n_eff=np.sqrt(eps_d)*np.sqrt(1+wav/(np.pi*ti*np.sqrt(-1*eps_m))*
+	n_eff=np.sqrt(eps_d)*np.sqrt(1+wav/(np.pi*ti*np.sqrt(-1*eps_m))*
 		np.sqrt(1-eps_d/eps_m))
 	return n_eff
 
 def mim_neff_sondergaard(eps_d, eps_m, wav, ti):
 	'''MIM eff index approximation by Sondergaard, from [2]
 
-	eps_d: insulator permittivity, 
+	eps_d: insulator permittivity,
 	eps_m: metal permittivity,
 	wav: wavelength,
 	ti: insulator thickness
