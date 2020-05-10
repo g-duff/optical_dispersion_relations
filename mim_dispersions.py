@@ -33,11 +33,15 @@ def mim_neff_sondergaard(eps_d, eps_m, wav, ti):
 	n_eff = np.sqrt(k_ov_k0)
 	return n_eff
 
-def mim_disp(beta, k_0, eps_1, eps_2, w):
+def mim_disp(beta, k_0, eps_1, eps_2, w, full_output=False):
 	'''Exact MIM dispersion relation from [3]
 	Find Beta by finding the zeros of the function
 	with the Newton-Raphson process'''
 	k1 = cm.sqrt(beta**2-eps_1*k_0**2)
 	k2 = cm.sqrt(beta**2-eps_2*k_0**2)
 	ze = cm.tanh(k2*w/2)*(k2/eps_2)+k1/(eps_1)
-	return ze
+
+	if not(full_output):
+		return ze
+	else:
+		return k1, k2
