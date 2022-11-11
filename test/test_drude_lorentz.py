@@ -44,3 +44,24 @@ class SinglePole(unittest.TestCase):
         # Then
         self.assertAlmostEqual(expected_permittivity,
                                actual_permittivity, places=2)
+
+    def test_silver_parameters(self):
+        # Given
+        silver_drude_parameters = {
+            'plasma_frequency': 1.35e16,
+            'damping_rate': 0.0023*1.35e16,
+        }
+        angular_frequency = np.array([4.18879020e+15, 3.42719199e+15,
+                                      2.89993168e+15, 2.51327412e+15,
+                                      2.21759481e+15, 1.98416378e+15])
+        expected_permittivity = np.array([-9.38643376+0.07699091j, - 14.51511588+0.14056532j,
+                                          - 20.66916708+0.232015j, - 27.84838702+0.35640458j,
+                                          - 36.05254204+0.51879695j, - 45.28136515+0.72425291j])
+
+        # When
+        actual_permittivity = drude_lorentz.single_pole(angular_frequency,
+                                                        **silver_drude_parameters)
+
+        # Then
+        self.assertTrue(np.allclose(
+            expected_permittivity, actual_permittivity))
