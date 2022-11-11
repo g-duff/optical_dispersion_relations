@@ -1,12 +1,7 @@
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
-
-
-def drude_model_1pole(omega, eps_inf, omegap, gamma, omega0):
-    '''1 pole Drude model for silver''' 
-    eps = eps_inf - omegap**2/(omega**2 + 1j*gamma*omega-omega0**2)
-    return eps
+from src.dispersion_relations import drude_lorentz
 
 
 def drude_model_2pole(omega, eps_inf, omegap1, gamma1, omega01, omegap2, gamma2, omega02):
@@ -35,11 +30,10 @@ Au_n = Au_n[i1:i2]
 Au_k = Au_k[i1:i2]
 
 
-Ag_params = {
-    'eps_inf': 1, 
-    'omegap': 1.35e16, 
-    'gamma': 0.0023*1.35e16,
-    'omega0': 0
+silver_drude_parameters = {
+    'dielectric_constant': 1,
+    'plasma_frequency': 1.35e16,
+    'damping_rate': 0.0023*1.35e16,
 }
 
 Au_params = {
@@ -57,7 +51,7 @@ Au_jc_epsilon = 1*(Au_n**2-Au_k**2) + 1j*(2*Au_n*Au_k)
 
 wl = np.arange(0.45, 1.0, 0.001)
 omega = 2*np.pi*3e8/(wl*1e-6)
-Ag_drude = drude_model_1pole(omega, **Ag_params)
+Ag_drude = drude_lorentz.single_pole(omega, **silver_drude_parameters)
 Au_drude = drude_model_2pole(omega, **Au_params)
 
 
