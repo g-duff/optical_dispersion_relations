@@ -20,28 +20,26 @@ def single_pole(angular_frequency,
         Complex permittivity at the specified angular_frequency
     '''
     permittivity = dielectric_constant - plasma_frequency**2 * lorentz_oscillator(
-        angular_frequency,
-        resonance_angular_frequency,
-        damping_rate,
+        frequency=angular_frequency,
+        peak_position=resonance_angular_frequency,
+        damping_constant=damping_rate,
     )
     return permittivity
 
 
-def lorentz_oscillator(angular_frequency,
-                       resonance_angular_frequency,
-                       damping_rate,
-                       oscillator_amplitude=1) -> float:
+def lorentz_oscillator(frequency,
+                       peak_position,
+                       damping_constant) -> float:
     '''Lorentz Oscillator
 
     Parameters:
-        angular_frequency
-        resonance_angular_frequency
-        damping_rate
-        oscillator_amplitude
+        frequency
+        peak_position
+        damping_constant
 
     Returns:
         Oscillator amplitude at the specified angular_frequency
     '''
-    denominator = angular_frequency**2 - resonance_angular_frequency**2 \
-        + 1j*damping_rate * angular_frequency
-    return oscillator_amplitude/denominator
+    denominator = frequency**2 - peak_position**2 \
+        + 1j*damping_constant * frequency
+    return 1/denominator
