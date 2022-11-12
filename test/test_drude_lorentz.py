@@ -65,3 +65,37 @@ class SinglePole(unittest.TestCase):
         # Then
         self.assertTrue(np.allclose(
             expected_permittivity, actual_permittivity))
+
+
+class DoublePole(unittest.TestCase):
+
+    def test_gold_parameters(self):
+        # Given
+        gold_drude_parameters = {
+            'dielectric_constant': 6,
+            'plasma_frequency': 1,
+            'first_pole': {
+                'peak_strength': 5.37e15**2,
+                'damping_constant': 6.216e13,
+                'peak_position': 0,
+            },
+            'second_pole': {
+                'peak_strength': 2.263e15**2,
+                'damping_constant': 1.332e15,
+                'peak_position': 4.572e15
+            }
+        }
+        angular_frequency = np.array([4.18879020e+15, 3.42719199e+15,
+                                      2.89993168e+15, 2.51327412e+15,
+                                      2.21759481e+15, 1.98416378e+15])
+        expected_permittivity = np.array([-1.42598986+4.18957409j, -6.03831464+1.60681497j,
+                                          -12.31997339+1.1348564j, -19.3739092+1.13632031j,
+                                          -27.29686535+1.32888338j, -36.13732434+1.65090681j])
+
+        # When
+        actual_permittivity = drude_lorentz.double_pole(angular_frequency,
+                                                        **gold_drude_parameters)
+
+        # Then
+        self.assertTrue(np.allclose(
+            expected_permittivity, actual_permittivity))
