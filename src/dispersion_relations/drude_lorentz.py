@@ -27,6 +27,42 @@ def single_pole(angular_frequency,
     return permittivity
 
 
+def double_pole(angular_frequency,
+                plasma_frequency,
+                dielectric_constant,
+                first_pole,
+                second_pole
+                ):
+    '''Double Pole Drude-Lorentz Dispersion Relation, for use with eg Gold
+
+    Parameters:
+        angular_frequency: the angular frequency at which to calculate the permittivity
+        plasma_frequency: natural frequency of a free oscillation of the electron sea
+        dielectric_constant: offset permittivity due to positive ion cores
+        first_pole, second_pole: dictionaries containing:
+            peak_strength: the relative strength of the peaks
+            damping_rate: characteristic collision frequency of the metal
+            peak_position: the Lorentz oscillator peak frequency
+
+    Returns:
+        Complex permittivity at the specified angular_frequency
+    '''
+    permittivity = dielectric_constant * plasma_frequency**2 * (
+        1
+        - first_pole['peak_strength']*lorentz_oscillator(
+            frequency=angular_frequency,
+            peak_position=first_pole['peak_position'],
+            damping_constant=first_pole['damping_constant'],
+        )
+        - second_pole['peak_strength']*lorentz_oscillator(
+            frequency=angular_frequency,
+            peak_position=second_pole['peak_position'],
+            damping_constant=second_pole['damping_constant'],
+        )
+    )
+    return permittivity
+
+
 def lorentz_oscillator(frequency,
                        peak_position,
                        damping_constant) -> float:
