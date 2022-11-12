@@ -4,12 +4,6 @@ import matplotlib.pyplot as plt
 from src.dispersion_relations import drude_lorentz
 
 
-def drude_model_2pole(omega, eps_inf, omegap1, gamma1, omega01, omegap2, gamma2, omega02):
-    eps = eps_inf*(1 - omegap1**2/(omega**2 - omega01**2 + 1j*gamma1*omega)\
-                     - omegap2**2/(omega**2 - omega02**2 + 1j*gamma2*omega))
-    return eps
-
-
 Ag_wl, Ag_n = np.loadtxt('./material_dispersions/ag_n.txt', unpack=True, delimiter='\t', skiprows=1)
 _, Ag_k = np.loadtxt('./material_dispersions/ag_k.txt', unpack=True, delimiter='\t', skiprows=1)
 
@@ -36,14 +30,19 @@ silver_drude_parameters = {
     'damping_rate': 0.0023*1.35e16,
 }
 
-Au_params = {
-    'eps_inf': 6,
-    'omegap1': 5.37e15, 
-    'gamma1': 6.216e13,
-    'omega01': 0,
-    'omegap2': 2.263e15,
-    'gamma2': 1.332e15,
-    'omega02': 4.572e15
+gold_drude_parameters = {
+    'dielectric_constant': 6,
+    'plasma_frequency': 1,
+    'first_pole': {
+        'peak_strength': 5.37e15**2,
+        'damping_constant': 6.216e13,
+        'peak_position': 0,
+    },
+    'second_pole': {
+        'peak_strength': 2.263e15**2,
+        'damping_constant': 1.332e15,
+        'peak_position': 4.572e15
+    }
 }
 
 Ag_jc_epsilon = 1*(Ag_n**2-Ag_k**2) + 1j*(2*Ag_n*Ag_k)
@@ -52,7 +51,7 @@ Au_jc_epsilon = 1*(Au_n**2-Au_k**2) + 1j*(2*Au_n*Au_k)
 wl = np.arange(0.45, 1.0, 0.001)
 omega = 2*np.pi*3e8/(wl*1e-6)
 Ag_drude = drude_lorentz.single_pole(omega, **silver_drude_parameters)
-Au_drude = drude_model_2pole(omega, **Au_params)
+Au_drude = drude_lorentz.double_pole(omega, **gold_drude_parameters)
 
 
 font = {'size': 12}
