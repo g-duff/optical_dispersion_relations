@@ -19,7 +19,7 @@ class SinglePole(unittest.TestCase):
         actual_permittivity = drude_lorentz.single_pole(
             angular_frequency=angular_frequency,
             plasma_frequency=plasma_frequency,
-            damping_rate=damping_rate,
+            damping_constant=damping_rate,
             dielectric_constant=dielectric_constant,
         )
 
@@ -38,7 +38,7 @@ class SinglePole(unittest.TestCase):
         actual_permittivity = drude_lorentz.single_pole(
             angular_frequency=angular_frequency,
             plasma_frequency=plasma_frequency,
-            damping_rate=damping_rate
+            damping_constant=damping_rate
         )
 
         # Then
@@ -49,7 +49,7 @@ class SinglePole(unittest.TestCase):
         # Given
         silver_drude_parameters = {
             'plasma_frequency': 1.35e16,
-            'damping_rate': 0.0023*1.35e16,
+            'damping_constant': 0.0023*1.35e16,
         }
         angular_frequency = np.array([4.18879020e+15, 3.42719199e+15,
                                       2.89993168e+15, 2.51327412e+15,

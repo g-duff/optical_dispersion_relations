@@ -27,7 +27,7 @@ Au_k = Au_k[i1:i2]
 silver_drude_parameters = {
     'dielectric_constant': 1,
     'plasma_frequency': 1.35e16,
-    'damping_rate': 0.0023*1.35e16,
+    'damping_constant': 0.0023*1.35e16,
 }
 
 gold_drude_parameters = {
