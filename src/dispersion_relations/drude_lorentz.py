@@ -42,7 +42,7 @@ def double_pole(angular_frequency,
         first_pole, second_pole: dictionaries containing:
             peak_strength: the relative strength of the peaks
             damping_rate: characteristic collision frequency of the metal
-            peak_position: the Lorentz oscillator peak frequency
+            peak_position: the Lorentz oscillator peak position
 
     Returns:
         Complex permittivity at the specified angular_frequency
