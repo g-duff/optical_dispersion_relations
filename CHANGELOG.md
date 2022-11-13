@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 * Single Drude Lorentz dispersion relation.
+* Double pole Drude Lorentz dispersion relation.
 
 ### Changed
 
