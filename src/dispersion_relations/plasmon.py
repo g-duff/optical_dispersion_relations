@@ -10,7 +10,7 @@ def surface_plasmon_polariton(dielectric_permittivity, metal_permittivity):
         metal_permittivity: float, complex number or numpy array
 
     Returns:
-        permittivity of surface plasmon polariton: complex number or numpy array
+        effective complex permittivity of surface plasmon polariton: complex number or numpy array
 
     Derivation in:
     Maier SA. Plasmonics: fundamentals and applications.
@@ -18,5 +18,5 @@ def surface_plasmon_polariton(dielectric_permittivity, metal_permittivity):
     '''
     numerator = dielectric_permittivity*metal_permittivity
     denominator = dielectric_permittivity+metal_permittivity
-    permittivity = numerator/denominator
-    return permittivity
+    effective_permittivity = numerator/denominator
+    return effective_permittivity
