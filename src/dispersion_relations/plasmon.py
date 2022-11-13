@@ -18,5 +18,5 @@ def surface_plasmon_polariton(dielectric_permittivity, metal_permittivity):
     '''
     numerator = dielectric_permittivity*metal_permittivity
     denominator = dielectric_permittivity+metal_permittivity
-    permittivity = np.sqrt(numerator/denominator)
+    permittivity = numerator/denominator
     return permittivity

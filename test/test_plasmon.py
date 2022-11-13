@@ -23,7 +23,7 @@ class SurfacePlasmonPolariton(unittest.TestCase):
                               0. + 0.j,
                               0.17355372 + 0.j])
 
-        expected_permittivity = np.array([1.00508909-0.j,
+        expected_refractive_index = np.array([1.00508909-0.j,
                                  1.02150784-0.j,
                                  1.05344962-0.j,
                                  1.11143786-0.j,
@@ -38,7 +38,8 @@ class SurfacePlasmonPolariton(unittest.TestCase):
         # When
         actual_permittivity = plasmon.surface_plasmon_polariton(
             dielectric_permittivity=dielectric_permittivity, metal_permittivity=metal_permittivity)
+        actual_refractive_index = np.sqrt(actual_permittivity)
 
         # Then
         self.assertTrue(np.allclose(
-            expected_permittivity, actual_permittivity))
+            expected_refractive_index, actual_refractive_index))
