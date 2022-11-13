@@ -5,6 +5,19 @@ from src.dispersion_relations import utilities
 
 class Utilities(unittest.TestCase):
 
+    def test_permittivity_to_extinction_coefficient(self):
+        # Given
+        complex_permittivity = 3.75 + 2.0j
+        expected_extinction_coefficient = 0.5
+
+        # When
+        actual_extinction_coefficient = utilities.permittivity_to_extinction_coefficient(
+            complex_permittivity)
+
+        # Then
+        self.assertAlmostEqual(
+            expected_extinction_coefficient, actual_extinction_coefficient)
+
     def test_permittivity_to_refractive_index(self):
         # Given
         complex_permittivity = 3.75 + 2.0j
