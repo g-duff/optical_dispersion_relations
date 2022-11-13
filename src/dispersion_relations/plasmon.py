@@ -1,5 +1,5 @@
 '''Plasmonics Dispersion Relations'''
-import numpy as np
+
 
 def surface_plasmon_polariton(dielectric_permittivity, metal_permittivity):
     '''Exact surface plasmon dispersion relation for TM polarization.
