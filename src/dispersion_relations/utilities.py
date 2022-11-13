@@ -2,6 +2,23 @@
 import numpy as np
 
 
+def permittivity_to_extinction_coefficient(
+    permittivity: complex
+) -> float:
+    '''Convert complex permittivity to extinction coefficient
+
+    Parameters:
+        permittivity
+
+    Returns:
+        extinction coefficient
+    '''
+    refractive_index: complex = permittivity_to_refractive_index(
+        permittivity)
+    extinction_coefficient = refractive_index.imag
+    return extinction_coefficient
+
+
 def permittivity_to_refractive_index(
     permittivity: complex
 ) -> complex:
