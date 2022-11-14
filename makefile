@@ -6,6 +6,9 @@ dev_dependencies: .venv
 	${environment_bin}/pip3 install --upgrade pip
 	${environment_bin}/pip3 install -r ./requirements/dev.txt
 
+dist:
+	${environment_bin}/python3 -m build
+
 lint_check:
 	${environment_bin}/pylint ./src/**/*py
 
