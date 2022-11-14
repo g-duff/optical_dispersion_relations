@@ -45,6 +45,8 @@ class SurfacePlasmonPolariton(unittest.TestCase):
 
 
 class MetalInsulatorMetalCollinApproximation(unittest.TestCase):
+    '''Test against fig 2 in Waveguiding in nanoscale metallic apertures.
+    https://doi.org/10.1364/OE.15.004310'''
 
     def test_thick_insulator(self):
         # Given
