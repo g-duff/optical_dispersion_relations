@@ -37,6 +37,10 @@ def metal_insulator_metal_collin_approximation(dielectric_permittivity: float,
 
     Returns:
         effective_refractive_index of the light propagating in the wavevuide: complex
+
+    Derivation in:
+        Waveguiding in nanoscale metallic apertures.
+        https://doi.org/10.1364/OE.15.004310
     '''
     surface_plasmon_coupling_term = wavelength * \
         np.sqrt(1-dielectric_permittivity/metal_permittivity) / \
