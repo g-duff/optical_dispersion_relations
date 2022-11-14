@@ -27,6 +27,17 @@ def metal_insulator_metal_collin_approximation(dielectric_permittivity: float,
                                                metal_permittivity: complex,
                                                wavelength: float,
                                                insulator_thickness: float) -> complex:
+    '''Approximate metal-insulator-metal waveguide dispersion relation for TM polarization.
+
+    Parameters:
+        dielectric_permittivity: float or complex
+        metal_permittivity: float or complex
+        wavelength, in any unit of distance: float
+        insulator_thickness, in the same unit of distance as wavelength: float
+
+    Returns:
+        effective_refractive_index of the light propagating in the wavevuide: complex
+    '''
     surface_plasmon_coupling_term = wavelength * \
         np.sqrt(1-dielectric_permittivity/metal_permittivity) / \
         (np.pi*insulator_thickness*np.sqrt(-1*metal_permittivity))
