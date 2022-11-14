@@ -21,3 +21,15 @@ def surface_plasmon_polariton(dielectric_permittivity, metal_permittivity):
     denominator = dielectric_permittivity+metal_permittivity
     effective_refractive_index = np.sqrt(numerator/denominator)
     return effective_refractive_index
+
+
+def metal_insulator_metal_collin_approximation(dielectric_permittivity: float,
+                                               metal_permittivity: complex,
+                                               wavelength: float,
+                                               insulator_thickness: float) -> complex:
+    surface_plasmon_coupling_term = wavelength * \
+        np.sqrt(1-dielectric_permittivity/metal_permittivity) / \
+        (np.pi*insulator_thickness*np.sqrt(-1*metal_permittivity))
+    effective_refractive_index = np.sqrt(dielectric_permittivity) * \
+        np.sqrt(1 + surface_plasmon_coupling_term)
+    return effective_refractive_index
