@@ -67,3 +67,25 @@ class MetalInsulatorMetalCollinApproximation(unittest.TestCase):
         self.assertAlmostEqual(expected_effective_refractive_index,
                                actual_effective_refractive_index,
                                places=2)
+
+    def test_thin_insulator(self):
+        # Given
+        dielectric_permittivity = 1
+        metal_permittivity = -50
+        insulator_thickness = 0.01
+        wavelength = 1
+
+        expected_effective_refractive_index = 2.355
+
+        # When
+        actual_effective_refractive_index = plasmon.metal_insulator_metal_collin_approximation(
+            dielectric_permittivity=dielectric_permittivity,
+            metal_permittivity=metal_permittivity,
+            wavelength=wavelength,
+            insulator_thickness=insulator_thickness,
+        )
+
+        # Then
+        self.assertAlmostEqual(expected_effective_refractive_index,
+                               actual_effective_refractive_index,
+                               places=3)
