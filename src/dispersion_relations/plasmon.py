@@ -2,7 +2,8 @@
 import numpy as np
 
 
-def surface_plasmon_polariton(dielectric_permittivity, metal_permittivity):
+def surface_plasmon_polariton(dielectric_permittivity: float,
+                              metal_permittivity: complex) -> complex:
     '''Exact surface plasmon dispersion relation for TM polarization.
     Surface plasmons only exist for TM polarization.
 
