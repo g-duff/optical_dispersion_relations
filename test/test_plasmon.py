@@ -42,3 +42,52 @@ class SurfacePlasmonPolariton(unittest.TestCase):
         # Then
         self.assertTrue(np.allclose(
             expected_refractive_index, actual_refractive_index))
+
+
+class MetalInsulatorMetalCollinApproximation(unittest.TestCase):
+    '''Test against fig 2 in Waveguiding in nanoscale metallic apertures.
+    https://doi.org/10.1364/OE.15.004310'''
+
+    def test_thick_insulator(self):
+        # Given
+        dielectric_permittivity = 1
+        metal_permittivity = -50
+        insulator_thickness = 10
+        wavelength = 1
+
+        expected_effective_refractive_index = 1
+
+        # When
+        actual_effective_refractive_index = plasmon.metal_insulator_metal_collin_approximation(
+            dielectric_permittivity=dielectric_permittivity,
+            metal_permittivity=metal_permittivity,
+            wavelength=wavelength,
+            insulator_thickness=insulator_thickness,
+        )
+
+        # Then
+        self.assertAlmostEqual(expected_effective_refractive_index,
+                               actual_effective_refractive_index,
+                               places=2)
+
+    def test_thin_insulator(self):
+        # Given
+        dielectric_permittivity = 1
+        metal_permittivity = -50
+        insulator_thickness = 0.01
+        wavelength = 1
+
+        expected_effective_refractive_index = 2.355
+
+        # When
+        actual_effective_refractive_index = plasmon.metal_insulator_metal_collin_approximation(
+            dielectric_permittivity=dielectric_permittivity,
+            metal_permittivity=metal_permittivity,
+            wavelength=wavelength,
+            insulator_thickness=insulator_thickness,
+        )
+
+        # Then
+        self.assertAlmostEqual(expected_effective_refractive_index,
+                               actual_effective_refractive_index,
+                               places=3)
