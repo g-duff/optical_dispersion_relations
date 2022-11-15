@@ -91,3 +91,35 @@ class MetalInsulatorMetalCollinApproximation(unittest.TestCase):
         self.assertAlmostEqual(expected_effective_refractive_index,
                                actual_effective_refractive_index,
                                places=3)
+
+
+class MetalInsulatorMetalSondergaardNarrowApproximation(unittest.TestCase):
+    '''Test against fig 4 in
+    General properties of slow-plasmon resonant nanostructures: nano-antennas and resonators.
+    https://doi.org/10.1364/OE.15.010869'''
+
+    def test_insulator_constants(self):
+        # Given
+        dielectric_permittivity = 1
+        metal_permittivity = -23.6+1.69j
+        wavelength = 775
+        insulator_thickness = np.array([100, 200, 300, 400, 500])
+
+        expected_effective_refractive_index = np.array([1.23403843+0.00811681j,
+                                                        1.12252228+0.00437417j,
+                                                        1.08308215+0.00300229j,
+                                                        1.062867+0.00228691j,
+                                                        1.05056857+0.00184725j])
+
+        # When
+        actual_effective_refractive_index = \
+            plasmon.metal_insulator_metal_sondergaard_narrow_approximation(
+            dielectric_permittivity=dielectric_permittivity,
+            metal_permittivity=metal_permittivity,
+            wavelength=wavelength,
+            insulator_thickness=insulator_thickness,
+        )
+
+        # Then
+        self.assertTrue(np.allclose(
+            expected_effective_refractive_index, actual_effective_refractive_index))
