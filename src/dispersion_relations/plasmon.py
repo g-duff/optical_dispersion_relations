@@ -51,10 +51,10 @@ def metal_insulator_metal_collin_approximation(dielectric_permittivity: float,
     return effective_refractive_index
 
 
-def metal_insulator_metal_sondergaard_narrow_approximation(dielectric_permittivity,
-                                                    metal_permittivity,
-                                                    wavelength,
-                                                    insulator_thickness):
+def metal_insulator_metal_sondergaard_narrow_approximation(dielectric_permittivity: float,
+                                                    metal_permittivity: complex,
+                                                    wavelength: float,
+                                                    insulator_thickness: float) -> complex:
     freespace_wavenumber = 2 * np.pi / wavelength
 
     narrow_gap_limit_propagation_constant = -2 * dielectric_permittivity \
