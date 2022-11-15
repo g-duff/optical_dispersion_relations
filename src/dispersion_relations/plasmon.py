@@ -49,3 +49,30 @@ def metal_insulator_metal_collin_approximation(dielectric_permittivity: float,
     effective_refractive_index = np.sqrt(dielectric_permittivity) * \
         np.sqrt(1 + surface_plasmon_coupling_term)
     return effective_refractive_index
+
+
+def metal_insulator_metal_sondergaard_narrow_approximation(dielectric_permittivity,
+                                                    metal_permittivity,
+                                                    wavelength,
+                                                    insulator_thickness):
+    freespace_wavenumber = 2 * np.pi / wavelength
+
+    narrow_gap_limit_propagation_constant = -2 * dielectric_permittivity \
+        / (insulator_thickness * metal_permittivity)
+
+    narrow_gap_limit_effective_refractive_index = narrow_gap_limit_propagation_constant \
+        / freespace_wavenumber
+
+    narrow_gap_limit_effective_permittivity = narrow_gap_limit_effective_refractive_index**2
+
+    effective_permittivity = dielectric_permittivity \
+        + 0.5 * narrow_gap_limit_effective_permittivity \
+        + np.sqrt(
+            narrow_gap_limit_effective_permittivity * (
+                dielectric_permittivity
+                - metal_permittivity
+                + 0.25 * narrow_gap_limit_effective_permittivity
+            )
+        )
+    effective_refractive_index = np.sqrt(effective_permittivity)
+    return effective_refractive_index
