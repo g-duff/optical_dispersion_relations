@@ -55,6 +55,20 @@ def metal_insulator_metal_sondergaard_narrow_approximation(dielectric_permittivi
                                                     metal_permittivity: complex,
                                                     wavelength: float,
                                                     insulator_thickness: float) -> complex:
+    '''Approximate metal-insulator-metal waveguide dispersion relation for TM polarization.
+
+    Parameters:
+        dielectric_permittivity: float or complex
+        metal_permittivity: float or complex
+        wavelength, in any unit of distance: float
+        insulator_thickness, in the same unit of distance as wavelength: float
+
+    Returns:
+        effective_refractive_index of the light propagating in the wavevuide: complex
+
+    Derivation in:
+        General properties of slow-plasmon resonant nanostructures: nano-antennas and resonators.
+        https://doi.org/10.1364/OE.15.010869'''
     freespace_wavenumber = 2 * np.pi / wavelength
 
     narrow_gap_limit_propagation_constant = -2 * dielectric_permittivity \
