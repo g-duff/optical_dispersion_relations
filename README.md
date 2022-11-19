@@ -1,10 +1,19 @@
-## MIM dispersion relation
+# Optical dispersion relations
 
-Calculates the dispersion of a metal-insulator-metal stack using approximations [1], [2] and the analytical formula [3]. The analytical formula is solved by using the Newton Raphson process in numpy.
+## Features
 
+* A collection of exact and approximate optical dispersion relations.
+* Academic Sources eg textbooks and journal articles.
+* Fully tested (see `test/`) so users can calculate with confidence.
 
-[1]: Collin S, Pardo F, Pelouard JL. Waveguiding in nanoscale metallic apertures. Optics Express. 2007 Apr 2;15(7):4310-20.
+## Install
 
-[2]: Bozhevolnyi SI, Søndergaard T. General properties of slow-plasmon resonant nanostructures: nano-antennas and resonators. Optics express. 2007 Aug 20;15(17):10869-77.
+Download the latest release [here](https://github.com/g-duff/optical_dispersion_relations/releases/latest), and install with pip eg:
 
-[3]: Maier SA. Plasmonics: fundamentals and applications. Springer Science & Business Media; 2007 May 16.
+```sh
+pip3 install optical_dispersion_relations-0.0.0-py3-none-any.whl
+```
+
+## Contribute
+
+Contributions and conversations warmly welcome.
