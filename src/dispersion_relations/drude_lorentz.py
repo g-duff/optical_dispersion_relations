@@ -74,7 +74,7 @@ def lorentz_oscillator(frequency: float,
         damping_constant
 
     Returns:
-        Oscillator amplitude at the specified angular_frequency
+        Oscillator amplitude at the specified frequency
     '''
     denominator = frequency**2 - peak_position**2 \
         + 1j*damping_constant * frequency
