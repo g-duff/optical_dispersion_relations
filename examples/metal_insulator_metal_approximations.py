@@ -19,6 +19,7 @@ sondergaard_approximation = plasmon.metal_insulator_metal_sondergaard_narrow_app
     **sondergaard_approximation_parameters
 )
 
+collin_approximation_figure, (collin_approximation_axes) = plt.subplots(ncols=1)
 sondergaard_approximation_figure, (sondergaard_approximation_axes) = plt.subplots(ncols=1)
 
 sondergaard_approximation_axes.set_title(
