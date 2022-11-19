@@ -8,6 +8,13 @@ from optical_dispersion_relations import plasmon
 
 matplotlib.rc('font', size=12)
 
+collin_approximation_parameters = {
+    'dielectric_permittivity': 1,
+    'metal_permittivity': -50,
+    'wavelength': 1,
+    'insulator_thickness': np.logspace(-2, 1, 100),
+}
+
 sondergaard_approximation_parameters = {
     'dielectric_permittivity': 1,
     'metal_permittivity': -23.6+1.69j,
