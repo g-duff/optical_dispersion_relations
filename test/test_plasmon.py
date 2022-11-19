@@ -123,3 +123,26 @@ class MetalInsulatorMetalSondergaardNarrowApproximation(unittest.TestCase):
         # Then
         self.assertTrue(np.allclose(
             expected_effective_refractive_index, actual_effective_refractive_index))
+
+    def test_thick_insulator(self):
+        # Given
+        dielectric_permittivity = 1
+        metal_permittivity = -50
+        insulator_thickness = 10
+        wavelength = 1
+
+        expected_effective_refractive_index = 1
+
+        # When
+        actual_effective_refractive_index = \
+            plasmon.metal_insulator_metal_sondergaard_narrow_approximation(
+            dielectric_permittivity=dielectric_permittivity,
+            metal_permittivity=metal_permittivity,
+            wavelength=wavelength,
+            insulator_thickness=insulator_thickness,
+        )
+
+        # Then
+        self.assertAlmostEqual(expected_effective_refractive_index,
+                               actual_effective_refractive_index,
+                               places=2)
