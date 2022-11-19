@@ -25,5 +25,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 * [src-layout](https://setuptools.pypa.io/en/latest/userguide/package_discovery.html#src-layout) package directory structure.
-
-### Removed
