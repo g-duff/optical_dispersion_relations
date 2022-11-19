@@ -12,7 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Single pole Drude-Lorentz permittivity.
 * Double pole Drude-Lorentz permittivity.
 * Surface plasmon polariton dispersion relation.
-* Metal-insulator-metal dispersion approximation from [Waveguiding in nanoscale metallic apertures](https://doi.org/10.1364/OE.15.004310)
+* Metal-insulator-metal dispersion approximations from 
+    * [Waveguiding in nanoscale metallic apertures](https://doi.org/10.1364/OE.15.004310)
+    * [General properties of slow-plasmon resonant nanostructures: nano-antennas and resonators](https://doi.org/10.1364/OE.15.010869)
 * Utilities:
     * permittivity to extinction coefficient.
     * permittivity to refractive index.
