@@ -27,12 +27,12 @@ def single_pole(angular_frequency: float,
     return permittivity
 
 
-def double_pole(angular_frequency,
-                plasma_frequency,
-                dielectric_constant,
-                first_pole,
-                second_pole
-                ):
+def double_pole(angular_frequency: float,
+                plasma_frequency: float,
+                dielectric_constant: float,
+                first_pole: dict,
+                second_pole: dict
+                ) -> complex:
     '''Double Pole Drude-Lorentz Dispersion Relation, for use with eg Gold
 
     Parameters:
