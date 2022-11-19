@@ -52,9 +52,9 @@ def metal_insulator_metal_collin_approximation(dielectric_permittivity: float,
 
 
 def metal_insulator_metal_sondergaard_narrow_approximation(dielectric_permittivity: float,
-                                                    metal_permittivity: complex,
-                                                    wavelength: float,
-                                                    insulator_thickness: float) -> complex:
+                                                           metal_permittivity: complex,
+                                                           wavelength: float,
+                                                           insulator_thickness: float) -> complex:
     '''Approximate metal-insulator-metal waveguide dispersion relation for TM polarization.
 
     Parameters:
