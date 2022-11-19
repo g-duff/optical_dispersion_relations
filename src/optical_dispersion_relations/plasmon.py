@@ -37,7 +37,7 @@ def metal_insulator_metal_collin_approximation(dielectric_permittivity: float,
         insulator_thickness, in the same unit of distance as wavelength: float
 
     Returns:
-        effective_refractive_index of the light propagating in the wavevuide: complex
+        effective_refractive_index of the light propagating in the waveguide: complex
 
     Derivation in:
         Waveguiding in nanoscale metallic apertures.
