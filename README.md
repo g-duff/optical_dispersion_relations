@@ -13,3 +13,7 @@ Download the latest release [here](https://github.com/g-duff/optical_dispersion_
 ```sh
 pip3 install optical_dispersion_relations-0.0.0-py3-none-any.whl
 ```
+
+## Contribute
+
+Contributions and conversations warmly welcome.
