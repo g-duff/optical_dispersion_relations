@@ -63,9 +63,9 @@ def double_pole(angular_frequency: float,
     return permittivity
 
 
-def lorentz_oscillator(frequency,
-                       peak_position,
-                       damping_constant) -> float:
+def lorentz_oscillator(frequency: float,
+                       peak_position: float,
+                       damping_constant: float) -> float:
     '''Lorentz Oscillator
 
     Parameters:
