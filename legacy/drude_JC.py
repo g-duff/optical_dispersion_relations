@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
-from src.dispersion_relations import drude_lorentz
+from src.optical_dispersion_relations import drude_lorentz
 
 
 Ag_wl, Ag_n = np.loadtxt('./material_dispersions/ag_n.txt', unpack=True, delimiter='\t', skiprows=1)
