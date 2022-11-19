@@ -1,12 +1,12 @@
 '''Drude Lorentz Dispersion Relations'''
 
 
-def single_pole(angular_frequency,
-                plasma_frequency,
-                damping_constant,
-                dielectric_constant=1,
-                peak_position=0
-                ):
+def single_pole(angular_frequency: float,
+                plasma_frequency: float,
+                damping_constant: float,
+                dielectric_constant: float = 1,
+                peak_position: float = 0
+                ) -> complex:
     '''Single Pole Drude-Lorentz Dispersion Relation, for use with eg Silver
 
     Parameters:
