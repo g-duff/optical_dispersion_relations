@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+
+* Transcendential equation for TE slab waveguide.
+
 ### Fixed
 
 * Documentation for:
