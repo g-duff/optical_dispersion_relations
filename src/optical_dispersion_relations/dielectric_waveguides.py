@@ -45,15 +45,14 @@ def transcendential_slab_waveguide_TE(
     substrate_propagation_constant = np.sqrt(
         waveguide_propagation_constant**2 - substrate_wavenumber**2)
 
-    transcendential_function = np.tan(
-        guiding_layer_propagation_constant*waveguide_thickness)
-    algebraic_function = guiding_layer_propagation_constant\
-        * (substrate_propagation_constant+cover_propagation_constant) \
-        / (guiding_layer_propagation_constant**2 -
-            substrate_propagation_constant*cover_propagation_constant
-           )
+    algebraic_function_value = algebraic_function(cover_propagation_constant,
+                                                  guiding_layer_propagation_constant,
+                                                  substrate_propagation_constant)
 
-    return transcendential_function - algebraic_function
+    transcendential_function_value = np.tan(
+        guiding_layer_propagation_constant*waveguide_thickness)
+
+    return transcendential_function_value - algebraic_function_value
 
 
 def transcendential_slab_waveguide_TM(
@@ -98,18 +97,29 @@ def transcendential_slab_waveguide_TM(
     substrate_propagation_constant = np.sqrt(
         waveguide_propagation_constant**2 - substrate_wavenumber**2)
 
-    transcendential_function = np.tan(
-        guiding_layer_propagation_constant*waveguide_thickness)
-
-    cover_propagation_constant = cover_propagation_constant * \
+    adjusted_cover_propagation_constant = cover_propagation_constant * \
         (guiding_layer_refractive_index/cover_refractive_index)**2
-    substrate_propagation_constant = substrate_propagation_constant * \
+    adjusted_substrate_propagation_constant = substrate_propagation_constant * \
         (guiding_layer_refractive_index/substrate_refractive_index)**2
 
-    algebraic_function = guiding_layer_propagation_constant\
+    algebraic_function_value = algebraic_function(adjusted_cover_propagation_constant,
+                                                  guiding_layer_propagation_constant,
+                                                  adjusted_substrate_propagation_constant)
+
+    transcendential_function_value = np.tan(
+        guiding_layer_propagation_constant*waveguide_thickness)
+
+    return transcendential_function_value - algebraic_function_value
+
+
+def algebraic_function(cover_propagation_constant,
+                       guiding_layer_propagation_constant,
+                       substrate_propagation_constant):
+    # pylint: disable = missing-function-docstring
+    algebraic_function_value = guiding_layer_propagation_constant\
         * (substrate_propagation_constant+cover_propagation_constant) \
         / (guiding_layer_propagation_constant**2 -
             substrate_propagation_constant*cover_propagation_constant
            )
 
-    return transcendential_function - algebraic_function
+    return algebraic_function_value
