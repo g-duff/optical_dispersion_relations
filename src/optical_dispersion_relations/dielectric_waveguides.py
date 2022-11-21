@@ -37,19 +37,20 @@ def transcendential_slab_waveguide_TE(
     guiding_layer_wavenumber = guiding_layer_refractive_index * free_space_wavenumber
     substrate_wavenumber = substrate_refractive_index * free_space_wavenumber
 
-    cover_propagation_constant = np.sqrt(
+    cover_parameter = np.sqrt(
         waveguide_propagation_constant**2 - cover_wavenumber**2)
-    guiding_layer_propagation_constant = np.sqrt(
-        guiding_layer_wavenumber**2 - waveguide_propagation_constant**2)
-    substrate_propagation_constant = np.sqrt(
+    substrate_parameter = np.sqrt(
         waveguide_propagation_constant**2 - substrate_wavenumber**2)
 
-    algebraic_function_value = algebraic_function(cover_propagation_constant,
-                                                  guiding_layer_propagation_constant,
-                                                  substrate_propagation_constant)
+    guiding_layer_parameter = np.sqrt(
+        guiding_layer_wavenumber**2 - waveguide_propagation_constant**2)
+
+    algebraic_function_value = algebraic_function(cover_parameter,
+                                                  guiding_layer_parameter,
+                                                  substrate_parameter)
 
     transcendential_function_value = np.tan(
-        guiding_layer_propagation_constant*waveguide_thickness)
+        guiding_layer_parameter*waveguide_thickness)
 
     return transcendential_function_value - algebraic_function_value
 
@@ -88,36 +89,30 @@ def transcendential_slab_waveguide_TM(
     guiding_layer_wavenumber = guiding_layer_refractive_index * free_space_wavenumber
     substrate_wavenumber = substrate_refractive_index * free_space_wavenumber
 
-    cover_propagation_constant = np.sqrt(
-        waveguide_propagation_constant**2 - cover_wavenumber**2)
-    guiding_layer_propagation_constant = np.sqrt(
+    cover_parameter = np.sqrt(waveguide_propagation_constant**2 - cover_wavenumber**2) \
+        * (guiding_layer_refractive_index/cover_refractive_index)**2
+    substrate_parameter = np.sqrt(waveguide_propagation_constant**2 - substrate_wavenumber**2) \
+        * (guiding_layer_refractive_index/substrate_refractive_index)**2
+
+    guiding_layer_parameter = np.sqrt(
         guiding_layer_wavenumber**2 - waveguide_propagation_constant**2)
-    substrate_propagation_constant = np.sqrt(
-        waveguide_propagation_constant**2 - substrate_wavenumber**2)
 
-    adjusted_cover_propagation_constant = cover_propagation_constant * \
-        (guiding_layer_refractive_index/cover_refractive_index)**2
-    adjusted_substrate_propagation_constant = substrate_propagation_constant * \
-        (guiding_layer_refractive_index/substrate_refractive_index)**2
-
-    algebraic_function_value = algebraic_function(adjusted_cover_propagation_constant,
-                                                  guiding_layer_propagation_constant,
-                                                  adjusted_substrate_propagation_constant)
+    algebraic_function_value = algebraic_function(cover_parameter,
+                                                  guiding_layer_parameter,
+                                                  substrate_parameter)
 
     transcendential_function_value = np.tan(
-        guiding_layer_propagation_constant*waveguide_thickness)
+        guiding_layer_parameter*waveguide_thickness)
 
     return transcendential_function_value - algebraic_function_value
 
 
-def algebraic_function(cover_propagation_constant,
-                       guiding_layer_propagation_constant,
-                       substrate_propagation_constant):
+def algebraic_function(cover_parameter,
+                       guiding_layer_parameter,
+                       substrate_parameter):
     # pylint: disable = missing-function-docstring
-    algebraic_function_value = guiding_layer_propagation_constant\
-        * (substrate_propagation_constant+cover_propagation_constant) \
-        / (guiding_layer_propagation_constant**2 -
-            substrate_propagation_constant*cover_propagation_constant
-           )
+    algebraic_function_value = guiding_layer_parameter \
+        * (substrate_parameter + cover_parameter) \
+        / (guiding_layer_parameter**2 - substrate_parameter*cover_parameter)
 
     return algebraic_function_value
