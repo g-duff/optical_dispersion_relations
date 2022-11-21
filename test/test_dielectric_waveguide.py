@@ -28,7 +28,7 @@ class TranscendentialSlabWaveguide(unittest.TestCase):
         # When
         residual = dielectric_waveguides.transcendential_slab_waveguide_TE(
             waveguide_propagation_constant,
-            free_space_wavelength,
+            free_space_wavenumber,
             waveguide_thickness,
             cover_refractive_index,
             guiding_layer_refractive_index,
@@ -57,7 +57,7 @@ class TranscendentialSlabWaveguide(unittest.TestCase):
         # When
         residual = dielectric_waveguides.transcendential_slab_waveguide_TM(
             waveguide_propagation_constant,
-            free_space_wavelength,
+            free_space_wavenumber,
             waveguide_thickness,
             cover_refractive_index,
             guiding_layer_refractive_index,

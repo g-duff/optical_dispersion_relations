@@ -5,7 +5,7 @@ import numpy as np
 
 def transcendential_slab_waveguide_TE(
     waveguide_propagation_constant,
-    free_space_wavelength,
+    free_space_wavenumber,
     waveguide_thickness,
     cover_refractive_index,
     guiding_layer_refractive_index,
@@ -18,7 +18,7 @@ def transcendential_slab_waveguide_TE(
 
     Parameters:
         waveguide_propagation_constant: unknown, vary to find the system solutions.
-        free_space_wavelength
+        free_space_wavenumber
         waveguide_thickness
         cover_refractive_index
         guiding_layer_refractive_index
@@ -33,7 +33,6 @@ def transcendential_slab_waveguide_TE(
         ISBN-13: 9780030474446
     '''
 
-    free_space_wavenumber = 2*np.pi/free_space_wavelength
     cover_wavenumber = cover_refractive_index * free_space_wavenumber
     guiding_layer_wavenumber = guiding_layer_refractive_index * free_space_wavenumber
     substrate_wavenumber = substrate_refractive_index * free_space_wavenumber
@@ -57,7 +56,7 @@ def transcendential_slab_waveguide_TE(
 
 def transcendential_slab_waveguide_TM(
     waveguide_propagation_constant,
-    free_space_wavelength,
+    free_space_wavenumber,
     waveguide_thickness,
     cover_refractive_index,
     guiding_layer_refractive_index,
@@ -70,7 +69,7 @@ def transcendential_slab_waveguide_TM(
 
     Parameters:
         waveguide_propagation_constant: unknown, vary to find the system solutions.
-        free_space_wavelength
+        free_space_wavenumber
         waveguide_thickness
         cover_refractive_index
         guiding_layer_refractive_index
@@ -85,7 +84,6 @@ def transcendential_slab_waveguide_TM(
         ISBN-13: 9780030474446
     '''
 
-    free_space_wavenumber = 2*np.pi/free_space_wavelength
     cover_wavenumber = cover_refractive_index * free_space_wavenumber
     guiding_layer_wavenumber = guiding_layer_refractive_index * free_space_wavenumber
     substrate_wavenumber = substrate_refractive_index * free_space_wavenumber
