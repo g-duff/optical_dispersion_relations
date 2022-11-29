@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Fixed
+
+* Enable dielectric waveguides to handle negative numbers internally.
+
 ## [v0.1.0](https://github.com/g-duff/optical_dispersion_relations/releases/v0.1.0)
 
 ### Added
