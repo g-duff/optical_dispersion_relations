@@ -9,15 +9,17 @@ def single_pole(angular_frequency: float,
                 ) -> complex:
     '''Single Pole Drude-Lorentz Dispersion Relation, for use with eg Silver
 
-    Parameters:
-        angular_frequency: the angular frequency at which to calculate the permittivity
-        plasma_frequency: natural frequency of a free oscillation of the electron sea
-        damping_rate: characteristic collision frequency of the metal
-        dielectric_constant: offset permittivity due to positive ion cores
-        peak_position: the Lorentz oscillator peak position
+    Parameters
+    ----------
+    angular_frequency: float, the angular frequency at which to calculate the permittivity
+    plasma_frequency: float, natural frequency of a free oscillation of the electron sea
+    damping_rate: float, characteristic collision frequency of the metal
+    dielectric_constant: float, offset permittivity due to positive ion cores
+    peak_position: float, the Lorentz oscillator peak position
 
-    Returns:
-        Complex permittivity at the specified angular_frequency
+    Returns
+    -------
+    Complex permittivity at the specified angular_frequency: complex
     '''
     permittivity = dielectric_constant - plasma_frequency**2 * lorentz_oscillator(
         frequency=angular_frequency,
@@ -35,17 +37,20 @@ def double_pole(angular_frequency: float,
                 ) -> complex:
     '''Double Pole Drude-Lorentz Dispersion Relation, for use with eg Gold
 
-    Parameters:
-        angular_frequency: the angular frequency at which to calculate the permittivity
-        plasma_frequency: natural frequency of a free oscillation of the electron sea
-        dielectric_constant: offset permittivity due to positive ion cores
-        first_pole, second_pole: dictionaries containing:
-            peak_strength: the relative strength of the peaks
-            damping_rate: characteristic collision frequency of the metal
-            peak_position: the Lorentz oscillator peak position
+    Parameters
+    ----------
+    angular_frequency: float, the angular frequency at which to calculate the permittivity
+    plasma_frequency: float, natural frequency of a free oscillation of the electron sea
+    dielectric_constant: float, offset permittivity due to positive ion cores
 
-    Returns:
-        Complex permittivity at the specified angular_frequency
+    first_pole, second_pole: dictionaries containing:
+        peak_strength: float, the relative strength of the peaks
+        damping_rate: float, characteristic collision frequency of the metal
+        peak_position: float, the Lorentz oscillator peak position
+
+    Returns
+    -------
+    Complex permittivity at the specified angular_frequency: complex
     '''
     permittivity = dielectric_constant * plasma_frequency**2 * (
         1
@@ -68,13 +73,15 @@ def lorentz_oscillator(frequency: float,
                        damping_constant: float) -> float:
     '''Lorentz Oscillator
 
-    Parameters:
-        frequency
-        peak_position
-        damping_constant
+    Parameters
+    ----------
+    frequency: float
+    peak_position: float
+    damping_constant: float
 
-    Returns:
-        Oscillator amplitude at the specified frequency
+    Returns
+    -------
+    Oscillator amplitude at the specified frequency: complex
     '''
     denominator = frequency**2 - peak_position**2 \
         + 1j*damping_constant * frequency
