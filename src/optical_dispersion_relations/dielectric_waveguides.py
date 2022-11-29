@@ -41,12 +41,12 @@ def transcendential_slab_waveguide_TE(
     guiding_layer_wavenumber = guiding_layer_refractive_index * free_space_wavenumber
     substrate_wavenumber = substrate_refractive_index * free_space_wavenumber
 
-    cover_parameter = np.sqrt(
+    cover_parameter = scimath.sqrt(
         waveguide_propagation_constant**2 - cover_wavenumber**2)
-    substrate_parameter = np.sqrt(
+    substrate_parameter = scimath.sqrt(
         waveguide_propagation_constant**2 - substrate_wavenumber**2)
 
-    guiding_layer_parameter = np.sqrt(
+    guiding_layer_parameter = scimath.sqrt(
         guiding_layer_wavenumber**2 - waveguide_propagation_constant**2)
 
     algebraic_function_value = algebraic_function(cover_parameter,
@@ -96,12 +96,12 @@ def transcendential_slab_waveguide_TM(
     guiding_layer_wavenumber = guiding_layer_refractive_index * free_space_wavenumber
     substrate_wavenumber = substrate_refractive_index * free_space_wavenumber
 
-    cover_parameter = np.sqrt(waveguide_propagation_constant**2 - cover_wavenumber**2) \
+    cover_parameter = scimath.sqrt(waveguide_propagation_constant**2 - cover_wavenumber**2) \
         * (guiding_layer_refractive_index/cover_refractive_index)**2
-    substrate_parameter = np.sqrt(waveguide_propagation_constant**2 - substrate_wavenumber**2) \
+    substrate_parameter = scimath.sqrt(waveguide_propagation_constant**2 - substrate_wavenumber**2) \
         * (guiding_layer_refractive_index/substrate_refractive_index)**2
 
-    guiding_layer_parameter = np.sqrt(
+    guiding_layer_parameter = scimath.sqrt(
         guiding_layer_wavenumber**2 - waveguide_propagation_constant**2)
 
     algebraic_function_value = algebraic_function(cover_parameter,
