@@ -7,11 +7,13 @@ def permittivity_to_extinction_coefficient(
 ) -> float:
     '''Convert complex permittivity to extinction coefficient
 
-    Parameters:
-        permittivity
+    Parameters
+    ----------
+    permittivity: float
 
-    Returns:
-        extinction coefficient
+    Returns
+    -------
+    extinction_coefficient: complex
     '''
     refractive_index: complex = permittivity_to_refractive_index(
         permittivity)
@@ -24,11 +26,13 @@ def permittivity_to_refractive_index(
 ) -> complex:
     '''Convert complex permittivity to complex refractive index
 
-    Parameters:
-        permittivity
+    Parameters
+    ----------
+    permittivity: complex
 
-    Returns:
-        complex refractive index
+    Returns
+    -------
+    refractive_index: complex
     '''
     return np.sqrt(permittivity)
 
@@ -38,10 +42,12 @@ def refractive_index_to_permittivity(
 ) -> complex:
     '''Convert complex refractive index to complex permittivity
 
-    Parameters:
-        refractive_index
+    Parameters
+    ----------
+    refractive_index: complex
 
-    Returns:
-        complex permittivity
+    Returns
+    -------
+    permittivity: complex
     '''
     return refractive_index**2
