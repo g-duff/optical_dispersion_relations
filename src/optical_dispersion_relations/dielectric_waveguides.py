@@ -1,6 +1,7 @@
 '''Dielectric Waveduide dispersions'''
 
 import numpy as np
+from numpy.lib import scimath
 
 
 def transcendential_slab_waveguide_TE(
@@ -40,12 +41,12 @@ def transcendential_slab_waveguide_TE(
     guiding_layer_wavenumber = guiding_layer_refractive_index * free_space_wavenumber
     substrate_wavenumber = substrate_refractive_index * free_space_wavenumber
 
-    cover_parameter = np.sqrt(
+    cover_parameter = scimath.sqrt(
         waveguide_propagation_constant**2 - cover_wavenumber**2)
-    substrate_parameter = np.sqrt(
+    substrate_parameter = scimath.sqrt(
         waveguide_propagation_constant**2 - substrate_wavenumber**2)
 
-    guiding_layer_parameter = np.sqrt(
+    guiding_layer_parameter = scimath.sqrt(
         guiding_layer_wavenumber**2 - waveguide_propagation_constant**2)
 
     algebraic_function_value = algebraic_function(cover_parameter,
@@ -55,7 +56,7 @@ def transcendential_slab_waveguide_TE(
     transcendential_function_value = np.tan(
         guiding_layer_parameter*waveguide_thickness)
 
-    return transcendential_function_value - algebraic_function_value
+    return np.abs(transcendential_function_value - algebraic_function_value)
 
 
 def transcendential_slab_waveguide_TM(
@@ -95,12 +96,12 @@ def transcendential_slab_waveguide_TM(
     guiding_layer_wavenumber = guiding_layer_refractive_index * free_space_wavenumber
     substrate_wavenumber = substrate_refractive_index * free_space_wavenumber
 
-    cover_parameter = np.sqrt(waveguide_propagation_constant**2 - cover_wavenumber**2) \
+    cover_parameter = scimath.sqrt(waveguide_propagation_constant**2 - cover_wavenumber**2) \
         * (guiding_layer_refractive_index/cover_refractive_index)**2
-    substrate_parameter = np.sqrt(waveguide_propagation_constant**2 - substrate_wavenumber**2) \
+    substrate_parameter = scimath.sqrt(waveguide_propagation_constant**2 - substrate_wavenumber**2) \
         * (guiding_layer_refractive_index/substrate_refractive_index)**2
 
-    guiding_layer_parameter = np.sqrt(
+    guiding_layer_parameter = scimath.sqrt(
         guiding_layer_wavenumber**2 - waveguide_propagation_constant**2)
 
     algebraic_function_value = algebraic_function(cover_parameter,
@@ -110,7 +111,7 @@ def transcendential_slab_waveguide_TM(
     transcendential_function_value = np.tan(
         guiding_layer_parameter*waveguide_thickness)
 
-    return transcendential_function_value - algebraic_function_value
+    return np.abs(transcendential_function_value - algebraic_function_value)
 
 
 def algebraic_function(cover_parameter,
