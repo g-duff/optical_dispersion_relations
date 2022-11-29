@@ -51,3 +51,16 @@ def refractive_index_to_permittivity(
     permittivity: complex
     '''
     return refractive_index**2
+
+
+def wavelength_to_wavenumber(wavelength: float) -> float:
+    '''Convert wavelength to wavenumber
+
+    Parameters
+    ----------
+    wavelength: float
+
+    Returns
+    -------
+    wavenumber: float'''
+    return 2*np.pi/wavelength
