@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+* Documentation format to match numpy.
 * Documentation for:
     * `metal_insulator_metal_collin_approximation`
     * `metal_insulator_metal_sondergaard_narrow_approximation`
