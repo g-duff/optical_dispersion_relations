@@ -5,13 +5,13 @@ from numpy.lib import scimath
 
 
 def transcendential_slab_waveguide_TE(
-    waveguide_propagation_constant,
-    free_space_wavenumber,
-    waveguide_thickness,
-    cover_refractive_index,
-    guiding_layer_refractive_index,
-    substrate_refractive_index,
-):
+    waveguide_propagation_constant: float,
+    free_space_wavenumber: float,
+    waveguide_thickness: float,
+    cover_refractive_index: float,
+    guiding_layer_refractive_index: float,
+    substrate_refractive_index: float,
+) -> float:
     # pylint: disable = invalid-name, too-many-arguments
     '''Transcendential equation for a slab waveguide with TE polarization.
     Find the value of waveguide_propagation_constant for which the function equals zero
