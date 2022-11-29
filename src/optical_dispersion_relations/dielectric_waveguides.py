@@ -16,21 +16,24 @@ def transcendential_slab_waveguide_TE(
     Find the value of waveguide_propagation_constant for which the function equals zero
     to solve the system.
 
-    Parameters:
-        waveguide_propagation_constant: unknown, vary to find the system solutions.
-        free_space_wavenumber
-        waveguide_thickness
-        cover_refractive_index
-        guiding_layer_refractive_index
-        substrate_refractive_index
+    Parameters
+    ----------
+    waveguide_propagation_constant: float, unkown - vary to find the system solutions.
+    free_space_wavenumber: float
+    waveguide_thickness: float
+    cover_refractive_index: float
+    guiding_layer_refractive_index: float
+    substrate_refractive_index: float
 
-    Returns:
-        residual to be minimized
+    Returns
+    -------
+    residual to be minimized: float
 
-    Derivation in:
-        Yariv, A. Optical Electronics.
-        ISBN-10: 0030474442
-        ISBN-13: 9780030474446
+    Derivation
+    ----------
+    Yariv, A. Optical Electronics.
+    ISBN-10: 0030474442
+    ISBN-13: 9780030474446
     '''
 
     cover_wavenumber = cover_refractive_index * free_space_wavenumber
