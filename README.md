@@ -8,7 +8,7 @@
 
 ## Install
 
-Download the latest release [here](https://github.com/g-duff/optical_dispersion_relations/releases/latest), and install with pip eg:
+Install with pip eg:
 
 ```sh
 pip3 install optical_dispersion_relations
