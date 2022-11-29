@@ -73,13 +73,15 @@ def lorentz_oscillator(frequency: float,
                        damping_constant: float) -> float:
     '''Lorentz Oscillator
 
-    Parameters:
-        frequency
-        peak_position
-        damping_constant
+    Parameters
+    ----------
+    frequency: float
+    peak_position: float
+    damping_constant: float
 
-    Returns:
-        Oscillator amplitude at the specified frequency
+    Returns
+    -------
+    Oscillator amplitude at the specified frequency
     '''
     denominator = frequency**2 - peak_position**2 \
         + 1j*damping_constant * frequency
