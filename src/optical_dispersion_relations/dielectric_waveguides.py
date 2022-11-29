@@ -56,7 +56,7 @@ def transcendential_slab_waveguide_TE(
     transcendential_function_value = np.tan(
         guiding_layer_parameter*waveguide_thickness)
 
-    return transcendential_function_value - algebraic_function_value
+    return np.abs(transcendential_function_value - algebraic_function_value)
 
 
 def transcendential_slab_waveguide_TM(
@@ -111,7 +111,7 @@ def transcendential_slab_waveguide_TM(
     transcendential_function_value = np.tan(
         guiding_layer_parameter*waveguide_thickness)
 
-    return transcendential_function_value - algebraic_function_value
+    return np.abs(transcendential_function_value - algebraic_function_value)
 
 
 def algebraic_function(cover_parameter,
