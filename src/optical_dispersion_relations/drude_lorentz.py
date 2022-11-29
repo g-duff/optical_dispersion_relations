@@ -9,15 +9,17 @@ def single_pole(angular_frequency: float,
                 ) -> complex:
     '''Single Pole Drude-Lorentz Dispersion Relation, for use with eg Silver
 
-    Parameters:
-        angular_frequency: the angular frequency at which to calculate the permittivity
-        plasma_frequency: natural frequency of a free oscillation of the electron sea
-        damping_rate: characteristic collision frequency of the metal
-        dielectric_constant: offset permittivity due to positive ion cores
-        peak_position: the Lorentz oscillator peak position
+    Parameters
+    ----------
+    angular_frequency: float, the angular frequency at which to calculate the permittivity
+    plasma_frequency: float, natural frequency of a free oscillation of the electron sea
+    damping_rate: float, characteristic collision frequency of the metal
+    dielectric_constant: float, offset permittivity due to positive ion cores
+    peak_position: float, the Lorentz oscillator peak position
 
-    Returns:
-        Complex permittivity at the specified angular_frequency
+    Returns
+    -------
+    Complex permittivity at the specified angular_frequency
     '''
     permittivity = dielectric_constant - plasma_frequency**2 * lorentz_oscillator(
         frequency=angular_frequency,
