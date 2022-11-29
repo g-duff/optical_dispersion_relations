@@ -114,9 +114,9 @@ def transcendential_slab_waveguide_TM(
     return np.abs(transcendential_function_value - algebraic_function_value)
 
 
-def algebraic_function(cover_parameter,
-                       guiding_layer_parameter,
-                       substrate_parameter):
+def algebraic_function(cover_parameter: complex,
+                       guiding_layer_parameter: complex,
+                       substrate_parameter) -> complex:
     # pylint: disable = missing-function-docstring
     algebraic_function_value = guiding_layer_parameter \
         * (substrate_parameter + cover_parameter) \
