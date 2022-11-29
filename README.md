@@ -14,6 +14,8 @@ Install with pip eg:
 pip3 install optical_dispersion_relations
 ```
 
+Download the latest release [here](https://github.com/g-duff/optical_dispersion_relations/releases/latest), or previous releases [here](https://github.com/g-duff/optical_dispersion_relations/releases).
+
 ## Contribute
 
 Contributions and conversations warmly welcome.
