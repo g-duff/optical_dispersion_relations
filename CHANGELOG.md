@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 * Transcendential equation for TE and TM slab waveguides.
+* Example figures and scripts under `./examples`
 
 ### Fixed
 
@@ -17,10 +18,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Documentation for:
     * `metal_insulator_metal_collin_approximation`
     * `metal_insulator_metal_sondergaard_narrow_approximation`
-
-## Added
-
-* Example figures and scripts under `./examples`
 
 ## [v0.0.0](https://github.com/g-duff/optical_dispersion_relations/releases/v0.0.0)
 
