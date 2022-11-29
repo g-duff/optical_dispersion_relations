@@ -51,4 +51,4 @@ surface_plasmon_axes.set_ylabel(r'Frequency $\omega/\omega_{p}$')
 surface_plasmon_axes.set_xlim(0, 4)
 surface_plasmon_axes.set_ylim(0, 1.2)
 
-fig.savefig('./surface_plasmon_polariton.png')
+fig.savefig('../images/surface_plasmon_polariton.png')
