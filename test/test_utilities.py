@@ -49,3 +49,14 @@ class Utilities(unittest.TestCase):
                                actual_permittivity.real)
         self.assertAlmostEqual(
             expected_permittivity_imaginary, actual_permittivity.imag)
+
+    def test_wavelength_to_wavenumber(self):
+        # Given
+        wavelength = 628.318
+        expected_wavenumber = 0.01
+
+        # When
+        actual_wavenumber = utilities.wavelength_to_wavenumber(wavelength)
+
+        # Then
+        self.assertAlmostEqual(expected_wavenumber, actual_wavenumber, places=6)
