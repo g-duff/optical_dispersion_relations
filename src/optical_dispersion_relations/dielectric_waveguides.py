@@ -1,6 +1,7 @@
 '''Dielectric Waveduide dispersions'''
 
 import numpy as np
+from numpy.lib import scimath
 
 
 def transcendential_slab_waveguide_TE(
