@@ -1,18 +1,18 @@
 '''Drude Lorentz module example usage'''
 
 import numpy as np
+from scipy import constants as const
 import matplotlib
 import matplotlib.pyplot as plt
+
 from optical_dispersion_relations import drude_lorentz
 
 
 matplotlib.rc('font', size=12)
-NANOMETERS = 1e-9
-SPEED_OF_LIGHT = 3e8
 
-wavelengths = np.arange(450, 1000, 1)
+wavelengths = np.arange(450, 1000, 1)*const.nano
 
-angular_frequency = 2*np.pi*SPEED_OF_LIGHT/(wavelengths*NANOMETERS)
+angular_frequency = 2*const.pi*const.speed_of_light/(wavelengths)
 
 silver_drude_parameters = {
     'dielectric_constant': 1,
