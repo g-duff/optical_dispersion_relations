@@ -50,6 +50,11 @@ if __name__ == '__main__':
     gold_permittivity = drude_lorentz.double_pole(
         angular_frequency, **GOLD_DRUDE_PARAMETERS)
 
+    silver_wavelengths, silver_refractive_index, silver_extinction_coefficient = \
+            np.genfromtxt(SILVER_FILEPATH, **FILE_FORMAT)
+    gold_wavelengths, gold_refractive_index, gold_extinction_coefficient = \
+            np.genfromtxt(GOLD_FILEPATH, **FILE_FORMAT)
+
     fig, (real_part_axes, imaginary_part_axes) = plt.subplots(
         ncols=2, figsize=(8, 4))
 
