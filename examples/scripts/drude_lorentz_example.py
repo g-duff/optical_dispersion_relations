@@ -31,33 +31,35 @@ GOLD_DRUDE_PARAMETERS = {
     }
 }
 
-wavelengths = np.arange(450, 1000, 1)*const.nano
+if __name__ == '__main__':
+    wavelengths = np.arange(450, 1000, 1)*const.nano
 
-angular_frequency = 2*const.pi*const.speed_of_light/(wavelengths)
+    angular_frequency = 2*const.pi*const.speed_of_light/(wavelengths)
 
-silver_permittivity = drude_lorentz.single_pole(
-    angular_frequency, **SILVER_DRUDE_PARAMETERS)
-gold_permittivity = drude_lorentz.double_pole(
-    angular_frequency, **GOLD_DRUDE_PARAMETERS)
+    silver_permittivity = drude_lorentz.single_pole(
+        angular_frequency, **SILVER_DRUDE_PARAMETERS)
+    gold_permittivity = drude_lorentz.double_pole(
+        angular_frequency, **GOLD_DRUDE_PARAMETERS)
 
-fig, (real_part_axes, imaginary_part_axes) = plt.subplots(
-    ncols=2, figsize=(8, 4))
+    fig, (real_part_axes, imaginary_part_axes) = plt.subplots(
+        ncols=2, figsize=(8, 4))
 
-real_part_axes.plot(wavelengths, silver_permittivity.real,
-                    'C0-', label='Silver')
-real_part_axes.plot(wavelengths, gold_permittivity.real, 'C1-', label='Gold')
-real_part_axes.set_xlabel('Free space wavelength (nm)')
-real_part_axes.set_ylabel('Permittivity, real part')
-real_part_axes.legend()
+    real_part_axes.plot(wavelengths, silver_permittivity.real,
+                        'C0-', label='Silver')
+    real_part_axes.plot(wavelengths, gold_permittivity.real,
+                        'C1-', label='Gold')
+    real_part_axes.set_xlabel('Free space wavelength (nm)')
+    real_part_axes.set_ylabel('Permittivity, real part')
+    real_part_axes.legend()
 
-imaginary_part_axes.plot(
-    wavelengths, silver_permittivity.imag, 'C0-',  label='Silver')
-imaginary_part_axes.plot(
-    wavelengths, gold_permittivity.imag, 'C1-',  label='Gold')
-imaginary_part_axes.set_xlabel('Free space wavelength (nm)')
-imaginary_part_axes.set_ylabel('Permittivity, imaginary part')
-imaginary_part_axes.legend()
+    imaginary_part_axes.plot(
+        wavelengths, silver_permittivity.imag, 'C0-',  label='Silver')
+    imaginary_part_axes.plot(
+        wavelengths, gold_permittivity.imag, 'C1-',  label='Gold')
+    imaginary_part_axes.set_xlabel('Free space wavelength (nm)')
+    imaginary_part_axes.set_ylabel('Permittivity, imaginary part')
+    imaginary_part_axes.legend()
 
-fig.tight_layout()
+    fig.tight_layout()
 
-plt.show()
+    plt.show()
