@@ -6,6 +6,8 @@
 * Academic Sources eg textbooks and journal articles.
 * Fully tested (see `test/`) so users can calculate with confidence.
 
+## Examples
+
 ## Install
 
 Install with pip eg:
