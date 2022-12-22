@@ -89,5 +89,5 @@ if __name__ == '__main__':
     imaginary_part_axes.legend()
 
     fig.tight_layout()
+    fig.savefig('../images/drude_lorentz_example.png')
 
-    plt.show()
