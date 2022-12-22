@@ -31,6 +31,15 @@ GOLD_DRUDE_PARAMETERS = {
     }
 }
 
+GOLD_FILEPATH = './empirical_data/gold.txt'
+SILVER_FILEPATH = './empirical_data/silver.txt'
+
+FILE_FORMAT = {
+        'unpack':True,
+        'skip_header':1,
+        'converters': { 0: lambda x: float(x)*const.micro }
+        }
+
 if __name__ == '__main__':
     wavelengths = np.arange(450, 1000, 1)*const.nano
 
