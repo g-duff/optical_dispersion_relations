@@ -7,20 +7,16 @@ import matplotlib.pyplot as plt
 
 from optical_dispersion_relations import drude_lorentz
 
-
 matplotlib.rc('font', size=12)
 
-wavelengths = np.arange(450, 1000, 1)*const.nano
 
-angular_frequency = 2*const.pi*const.speed_of_light/(wavelengths)
-
-silver_drude_parameters = {
+SILVER_DRUDE_PARAMETERS = {
     'dielectric_constant': 1,
     'plasma_frequency': 1.35e16,
     'damping_constant': 0.0023*1.35e16,
 }
 
-gold_drude_parameters = {
+GOLD_DRUDE_PARAMETERS = {
     'dielectric_constant': 6,
     'plasma_frequency': 1,
     'first_pole': {
@@ -35,10 +31,14 @@ gold_drude_parameters = {
     }
 }
 
+wavelengths = np.arange(450, 1000, 1)*const.nano
+
+angular_frequency = 2*const.pi*const.speed_of_light/(wavelengths)
+
 silver_permittivity = drude_lorentz.single_pole(
-    angular_frequency, **silver_drude_parameters)
+    angular_frequency, **SILVER_DRUDE_PARAMETERS)
 gold_permittivity = drude_lorentz.double_pole(
-    angular_frequency, **gold_drude_parameters)
+    angular_frequency, **GOLD_DRUDE_PARAMETERS)
 
 fig, (real_part_axes, imaginary_part_axes) = plt.subplots(
     ncols=2, figsize=(8, 4))
