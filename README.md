@@ -43,6 +43,8 @@ gold_permittivity = drude_lorentz.double_pole(
 	angular_frequency, **gold_drude_parameters)
 ```
 
+* More examples can be found under `/examples/`.
+
 ## Install
 
 Install with pip eg:
