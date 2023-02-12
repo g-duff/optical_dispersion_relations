@@ -1,26 +1,23 @@
 '''Drude Lorentz module example usage'''
 
 import numpy as np
+from scipy import constants as const
 import matplotlib
 import matplotlib.pyplot as plt
-from optical_dispersion_relations import drude_lorentz
 
+from optical_dispersion_relations import drude_lorentz
+from optical_dispersion_relations import utilities
 
 matplotlib.rc('font', size=12)
-NANOMETERS = 1e-9
-SPEED_OF_LIGHT = 3e8
 
-wavelengths = np.arange(450, 1000, 1)
 
-angular_frequency = 2*np.pi*SPEED_OF_LIGHT/(wavelengths*NANOMETERS)
-
-silver_drude_parameters = {
+SILVER_DRUDE_PARAMETERS = {
     'dielectric_constant': 1,
     'plasma_frequency': 1.35e16,
     'damping_constant': 0.0023*1.35e16,
 }
 
-gold_drude_parameters = {
+GOLD_DRUDE_PARAMETERS = {
     'dielectric_constant': 6,
     'plasma_frequency': 1,
     'first_pole': {
@@ -35,29 +32,62 @@ gold_drude_parameters = {
     }
 }
 
-silver_permittivity = drude_lorentz.single_pole(
-    angular_frequency, **silver_drude_parameters)
-gold_permittivity = drude_lorentz.double_pole(
-    angular_frequency, **gold_drude_parameters)
+GOLD_FILEPATH = './empirical_data/gold.txt'
+SILVER_FILEPATH = './empirical_data/silver.txt'
 
-fig, (real_part_axes, imaginary_part_axes) = plt.subplots(
-    ncols=2, figsize=(8, 4))
+FILE_FORMAT = {
+        'unpack':True,
+        'skip_header':1,
+        'converters': { 0: lambda x: float(x)*const.micro }
+        }
 
-real_part_axes.plot(wavelengths, silver_permittivity.real,
-                    'C0-', label='Silver')
-real_part_axes.plot(wavelengths, gold_permittivity.real, 'C1-', label='Gold')
-real_part_axes.set_xlabel('Free space wavelength (nm)')
-real_part_axes.set_ylabel('Permittivity, real part')
-real_part_axes.legend()
+if __name__ == '__main__':
+    wavelengths = np.arange(450, 1000, 1)*const.nano
 
-imaginary_part_axes.plot(
-    wavelengths, silver_permittivity.imag, 'C0-',  label='Silver')
-imaginary_part_axes.plot(
-    wavelengths, gold_permittivity.imag, 'C1-',  label='Gold')
-imaginary_part_axes.set_xlabel('Free space wavelength (nm)')
-imaginary_part_axes.set_ylabel('Permittivity, imaginary part')
-imaginary_part_axes.legend()
+    angular_frequency = 2*const.pi*const.speed_of_light/(wavelengths)
 
-fig.tight_layout()
+    silver_permittivity = drude_lorentz.single_pole(
+        angular_frequency, **SILVER_DRUDE_PARAMETERS)
+    gold_permittivity = drude_lorentz.double_pole(
+        angular_frequency, **GOLD_DRUDE_PARAMETERS)
 
-plt.show()
+    silver_wavelengths, silver_refractive_index, silver_extinction_coefficient = \
+            np.genfromtxt(SILVER_FILEPATH, **FILE_FORMAT)
+    gold_wavelengths, gold_refractive_index, gold_extinction_coefficient = \
+            np.genfromtxt(GOLD_FILEPATH, **FILE_FORMAT)
+
+    silver_empirical_permittivity = utilities.refractive_index_to_permittivity(
+            silver_refractive_index + 1j*silver_extinction_coefficient)
+    gold_empirical_permittivity = utilities.refractive_index_to_permittivity(
+            gold_refractive_index + 1j*gold_extinction_coefficient)
+
+    fig, (real_part_axes, imaginary_part_axes) = plt.subplots(
+        ncols=2, figsize=(8, 4))
+
+    real_part_axes.plot(wavelengths/const.nano, silver_permittivity.real,
+                        'C0-', label='Silver')
+    real_part_axes.plot(silver_wavelengths/const.nano, silver_empirical_permittivity.real,
+                        'C0o')
+    real_part_axes.plot(wavelengths/const.nano, gold_permittivity.real,
+                        'C1-', label='Gold')
+    real_part_axes.plot(gold_wavelengths/const.nano, gold_empirical_permittivity.real,
+                        'C1o')
+    real_part_axes.set_xlabel('Free space wavelength (nm)')
+    real_part_axes.set_ylabel('Permittivity, real part')
+    real_part_axes.legend()
+
+    imaginary_part_axes.plot(
+        wavelengths/const.nano, silver_permittivity.imag, 'C0-',  label='Silver')
+    imaginary_part_axes.plot(silver_wavelengths/const.nano, silver_empirical_permittivity.imag,
+                        'C0o')
+    imaginary_part_axes.plot(
+        wavelengths/const.nano, gold_permittivity.imag, 'C1-',  label='Gold')
+    imaginary_part_axes.plot(gold_wavelengths/const.nano, gold_empirical_permittivity.imag,
+                        'C1o')
+    imaginary_part_axes.set_xlabel('Free space wavelength (nm)')
+    imaginary_part_axes.set_ylabel('Permittivity, imaginary part')
+    imaginary_part_axes.legend()
+
+    fig.tight_layout()
+    fig.savefig('../images/drude_lorentz_example.png')
+
