@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
 [project]
 dependencies = ["numpy>=1.23.4"]
 name = "optical_dispersion_relations"
@@ -13,6 +17,9 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+
+[tool.setuptools.packages.find]
+include = ["optical_dispersion_relations*"]
 
 [project.urls]
 "Homepage" = "https://github.com/g-duff/optical_dispersion_relations"
