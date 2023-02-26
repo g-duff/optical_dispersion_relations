@@ -1,6 +1,6 @@
 # pylint: disable = import-error, missing-class-docstring, missing-function-docstring, missing-module-docstring
 import unittest
-from src.optical_dispersion_relations import utilities
+from optical_dispersion_relations import utilities
 
 
 class Utilities(unittest.TestCase):

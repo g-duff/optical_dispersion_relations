@@ -1,7 +1,7 @@
 # pylint: disable = import-error, missing-class-docstring, missing-function-docstring, missing-module-docstring
 import unittest
 import numpy as np
-from src.optical_dispersion_relations import plasmon
+from optical_dispersion_relations import plasmon
 
 
 class SurfacePlasmonPolariton(unittest.TestCase):
