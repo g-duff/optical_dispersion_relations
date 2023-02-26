@@ -59,4 +59,5 @@ class Utilities(unittest.TestCase):
         actual_wavenumber = utilities.wavelength_to_wavenumber(wavelength)
 
         # Then
-        self.assertAlmostEqual(expected_wavenumber, actual_wavenumber, places=6)
+        self.assertAlmostEqual(expected_wavenumber,
+                               actual_wavenumber, places=6)

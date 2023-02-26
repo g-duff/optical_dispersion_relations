@@ -9,9 +9,7 @@ class TranscendentialSlabWaveguide(unittest.TestCase):
     https://www.siio.eu/oms.html
     '''
 
-    def test_TE_constants_benchmark(self):
-        # pylint: disable = invalid-name
-
+    def test_te_constants_benchmark(self):
         # Given
         free_space_wavelength = 1.550
         waveguide_effective_refractive_index = 1.876691009
@@ -26,7 +24,7 @@ class TranscendentialSlabWaveguide(unittest.TestCase):
         substrate_refractive_index = 1.5
 
         # When
-        residual = dielectric_waveguides.transcendential_slab_waveguide_TE(
+        residual = dielectric_waveguides.transcendential_slab_waveguide_te(
             waveguide_propagation_constant,
             free_space_wavenumber,
             waveguide_thickness,
@@ -38,9 +36,7 @@ class TranscendentialSlabWaveguide(unittest.TestCase):
         # Then
         self.assertAlmostEqual(residual, 0)
 
-    def test_TM_constants_benchmark(self):
-        # pylint: disable = invalid-name
-
+    def test_tm_constants_benchmark(self):
         # Given
         free_space_wavelength = 1.550
         waveguide_effective_refractive_index = 1.744774075
@@ -55,7 +51,7 @@ class TranscendentialSlabWaveguide(unittest.TestCase):
         substrate_refractive_index = 1.5
 
         # When
-        residual = dielectric_waveguides.transcendential_slab_waveguide_TM(
+        residual = dielectric_waveguides.transcendential_slab_waveguide_tm(
             waveguide_propagation_constant,
             free_space_wavenumber,
             waveguide_thickness,
