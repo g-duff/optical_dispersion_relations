@@ -1,6 +1,6 @@
 SHELL = /bin/sh
 environment_bin := ./.venv/bin
-.PHONY: lint_check test
+.PHONY: lint format test
 
 dev_dependencies: .venv
 	${environment_bin}/pip3 install --upgrade pip
@@ -9,8 +9,11 @@ dev_dependencies: .venv
 dist:
 	${environment_bin}/python3 -m build
 
-lint_check:
-	${environment_bin}/pylint ./src/**/*py
+format:
+	${environment_bin}/autopep8 --in-place ./optical_dispersion_relations/*py ./test/*py
+
+lint:
+	${environment_bin}/pylint ./optical_dispersion_relations/*py ./test/*py
 
 test:
 	${environment_bin}/python3 -m unittest discover ./test/ 'test_*.py'

@@ -4,7 +4,7 @@ import numpy as np
 from numpy.lib import scimath
 
 
-def transcendential_slab_waveguide_TE(
+def transcendential_slab_waveguide_te(
     waveguide_propagation_constant: float,
     free_space_wavenumber: float,
     waveguide_thickness: float,
@@ -12,7 +12,7 @@ def transcendential_slab_waveguide_TE(
     guiding_layer_refractive_index: float,
     substrate_refractive_index: float,
 ) -> float:
-    # pylint: disable = invalid-name, too-many-arguments
+    # pylint: disable = too-many-arguments
     '''Transcendential equation for a slab waveguide with TE polarization.
     Find the value of waveguide_propagation_constant for which the function equals zero
     to solve the system.
@@ -59,7 +59,7 @@ def transcendential_slab_waveguide_TE(
     return np.abs(transcendential_function_value - algebraic_function_value)
 
 
-def transcendential_slab_waveguide_TM(
+def transcendential_slab_waveguide_tm(
     waveguide_propagation_constant: float,
     free_space_wavenumber: float,
     waveguide_thickness: float,
@@ -67,7 +67,7 @@ def transcendential_slab_waveguide_TM(
     guiding_layer_refractive_index: float,
     substrate_refractive_index: float,
 ) -> float:
-    # pylint: disable = invalid-name, too-many-arguments
+    # pylint: disable = too-many-arguments
     '''Transcendential equation for a slab waveguide with TM polarization.
     Find the value of waveguide_propagation_constant for which the function equals zero
     to solve the system.
@@ -98,8 +98,9 @@ def transcendential_slab_waveguide_TM(
 
     cover_parameter = scimath.sqrt(waveguide_propagation_constant**2 - cover_wavenumber**2) \
         * (guiding_layer_refractive_index/cover_refractive_index)**2
-    substrate_parameter = scimath.sqrt(waveguide_propagation_constant**2 - substrate_wavenumber**2) \
-        * (guiding_layer_refractive_index/substrate_refractive_index)**2
+    substrate_parameter = scimath.sqrt(
+        waveguide_propagation_constant**2 - substrate_wavenumber**2
+    ) * (guiding_layer_refractive_index/substrate_refractive_index)**2
 
     guiding_layer_parameter = scimath.sqrt(
         guiding_layer_wavenumber**2 - waveguide_propagation_constant**2)

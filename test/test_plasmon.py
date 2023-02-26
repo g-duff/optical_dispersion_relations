@@ -1,7 +1,7 @@
 # pylint: disable = import-error, missing-class-docstring, missing-function-docstring, missing-module-docstring
 import unittest
 import numpy as np
-from src.optical_dispersion_relations import plasmon
+from optical_dispersion_relations import plasmon
 
 
 class SurfacePlasmonPolariton(unittest.TestCase):
@@ -114,11 +114,11 @@ class MetalInsulatorMetalSondergaardNarrowApproximation(unittest.TestCase):
         # When
         actual_effective_refractive_index = \
             plasmon.metal_insulator_metal_sondergaard_narrow_approximation(
-            dielectric_permittivity=dielectric_permittivity,
-            metal_permittivity=metal_permittivity,
-            wavelength=wavelength,
-            insulator_thickness=insulator_thickness,
-        )
+                dielectric_permittivity=dielectric_permittivity,
+                metal_permittivity=metal_permittivity,
+                wavelength=wavelength,
+                insulator_thickness=insulator_thickness,
+            )
 
         # Then
         self.assertTrue(np.allclose(
@@ -136,11 +136,11 @@ class MetalInsulatorMetalSondergaardNarrowApproximation(unittest.TestCase):
         # When
         actual_effective_refractive_index = \
             plasmon.metal_insulator_metal_sondergaard_narrow_approximation(
-            dielectric_permittivity=dielectric_permittivity,
-            metal_permittivity=metal_permittivity,
-            wavelength=wavelength,
-            insulator_thickness=insulator_thickness,
-        )
+                dielectric_permittivity=dielectric_permittivity,
+                metal_permittivity=metal_permittivity,
+                wavelength=wavelength,
+                insulator_thickness=insulator_thickness,
+            )
 
         # Then
         self.assertAlmostEqual(expected_effective_refractive_index,
