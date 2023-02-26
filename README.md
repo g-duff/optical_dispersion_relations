@@ -1,4 +1,4 @@
-# Optical dispersion relations
+# [Optical Dispersion Relations](https://github.com/g-duff/optical_dispersion_relations)
 
 ## Features
 
@@ -49,7 +49,7 @@ gold_permittivity = drude_lorentz.double_pole(
 
 ## Install
 
-Install with pip eg:
+[Install with pip](https://pypi.org/project/optical-dispersion-relations/) eg:
 
 ```sh
 pip3 install optical_dispersion_relations
