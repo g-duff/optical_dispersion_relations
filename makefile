@@ -1,5 +1,8 @@
 SHELL = /bin/sh
-environment_bin := ./.venv/bin
+
+environment := ./.venv
+environment_bin := ${environment}/bin
+
 .PHONY: lint format test
 
 dev_dependencies: .venv
@@ -19,4 +22,4 @@ test:
 	${environment_bin}/python3 -m unittest discover ./test/ 'test_*.py'
 
 .venv:
-	python3 -m venv ./.venv
+	python3 -m venv ${environment}
