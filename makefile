@@ -3,11 +3,14 @@ SHELL = /bin/sh
 environment := ./.venv
 environment_bin := ${environment}/bin
 
-.PHONY: lint format test
+.PHONY: clean format lint test
 
 dev_dependencies: .venv
 	${environment_bin}/pip3 install --upgrade pip
 	${environment_bin}/pip3 install -r ./requirements/dev.txt
+
+clean:
+	rm -rf ${environment}
 
 dist:
 	${environment_bin}/python3 -m build
