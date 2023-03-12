@@ -5,6 +5,7 @@ environment_bin := ${environment}/bin
 
 .PHONY: clean format lint test
 
+# Default Goal
 dev_dependencies: .venv
 	${environment_bin}/pip3 install --upgrade pip
 	${environment_bin}/pip3 install -r ./requirements/dev.txt
