@@ -70,7 +70,7 @@ def double_pole(angular_frequency: float,
 
 def lorentz_oscillator(frequency: float,
                        peak_position: float,
-                       damping_constant: float) -> float:
+                       damping_constant: float) -> complex:
     '''Lorentz Oscillator
 
     Parameters
