@@ -5,7 +5,9 @@ class DrudeLorentz:
     '''Build Drude Lorentz dispersion relations.'''
 
     def __init__(self):
-        pass
+        self.poles = []
+        self.dielectric_constant = 1
+        self.plasma_frequency = 0
 
     def with_dielectric_constant(self, dielectric_constant):
         pass
