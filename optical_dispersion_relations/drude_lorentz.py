@@ -1,6 +1,25 @@
 '''Drude Lorentz Dispersion Relations'''
 
 
+class DrudeLorentz:
+    '''Build Drude Lorentz dispersion relations.'''
+
+    def __init__(self):
+        pass
+
+    def with_dielectric_constant(self, dielectric_constant):
+        pass
+
+    def with_plasma_frequency(self, plasma_frequency):
+        pass
+
+    def with_pole(self, damping_rate, peak_strength, peak_position):
+        pass
+
+    def build_dispersion_relation(self):
+        pass
+
+
 def single_pole(angular_frequency: float,
                 plasma_frequency: float,
                 damping_constant: float,
