@@ -23,7 +23,17 @@ class DrudeLorentz:
         return self
 
     def with_plasma_frequency(self, plasma_frequency):
-        pass
+        '''
+        Paramerers
+        ----------
+        plasma_frequency: float, natural frequency of a free oscillation of the electron sea
+
+        Returns
+        -------
+        the instance
+        '''
+        self.plasma_frequency = plasma_frequency
+        return self
 
     def with_pole(self, damping_rate, peak_strength, peak_position):
         pass
