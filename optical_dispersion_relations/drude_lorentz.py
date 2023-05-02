@@ -8,6 +8,7 @@ class DrudeLorentz:
         self.poles = []
         self.dielectric_constant = 1
         self.plasma_frequency = 0
+        self.angular_frequency = 0
 
     def with_dielectric_constant(self, dielectric_constant: float):
         '''
@@ -35,11 +36,11 @@ class DrudeLorentz:
         self.plasma_frequency = plasma_frequency
         return self
 
-    def with_pole(self,
-                  damping_constant: float,
-                  peak_position: float = 0,
-                  peak_strength: float = 1
-                  ):
+    def add_pole(self,
+                 damping_constant: float,
+                 peak_position: float = 0,
+                 peak_strength: float = 1
+                 ):
         '''
         Parameters
         ----------
@@ -54,23 +55,33 @@ class DrudeLorentz:
         self.poles.append((damping_constant, peak_position, peak_strength))
         return self
 
-    def build_dispersion_relation(self):
+    def with_angular_frequency(self, angular_frequency):
+        '''
+        Paramerers
+        ----------
+        angular_frequency: float, the angular frequency at which to calculate the permittivity
+
+        Returns
+        -------
+        the instance
+        '''
+        self.angular_frequency = angular_frequency
+        return self
+
+    def permittivity(self):
         '''
         Returns
         -------
         The Drude-Lorentz dispersion relation as a function of angular frequency
         '''
-        def dispersion_relation(angular_frequency):
-            permittivity = self.dielectric_constant - self.plasma_frequency**2 * \
-                sum(
-                    peak_strength *
-                    lorentz_oscillator(angular_frequency,
-                                       peak_position, damping_constant)
-                    for damping_constant, peak_position, peak_strength in self.poles
-                )
-            return permittivity
-
-        return dispersion_relation
+        permittivity = self.dielectric_constant - self.plasma_frequency**2 * \
+            sum(
+                peak_strength *
+                lorentz_oscillator(self.angular_frequency,
+                                   peak_position, damping_constant)
+                for damping_constant, peak_position, peak_strength in self.poles
+            )
+        return permittivity
 
 
 def single_pole(angular_frequency: float,

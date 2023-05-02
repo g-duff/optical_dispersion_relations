@@ -8,8 +8,6 @@ class Builder(unittest.TestCase):
 
     def test_silver_parameters(self):
         # Given
-        plasma_frequency = 1.35e16
-        damping_constant = 0.0023*1.35e16
         angular_frequency = np.array([4.18879020e+15, 3.42719199e+15,
                                       2.89993168e+15, 2.51327412e+15,
                                       2.21759481e+15, 1.98416378e+15])
@@ -17,15 +15,11 @@ class Builder(unittest.TestCase):
                                           - 20.66916708+0.232015j, - 27.84838702+0.35640458j,
                                           - 36.05254204+0.51879695j, - 45.28136515+0.72425291j])
 
-        dispersion_builder = drude_lorentz.DrudeLorentz()
-
-        dispersion_builder.with_plasma_frequency(
-            plasma_frequency).with_pole(damping_constant)
+        dispersion = drude_lorentz.DrudeLorentz().with_plasma_frequency(1.35e16).add_pole(
+            damping_constant=0.0023*1.35e16).with_angular_frequency(angular_frequency)
 
         # When
-        dispersion_relation = dispersion_builder.build_dispersion_relation()
-
-        actual_permittivity = dispersion_relation(angular_frequency)
+        actual_permittivity = dispersion.permittivity()
 
         # Then
         self.assertTrue(np.allclose(
@@ -42,20 +36,18 @@ class Builder(unittest.TestCase):
 
         dispersion_builder = drude_lorentz.DrudeLorentz()
 
-        # When
-        dispersion_builder.with_dielectric_constant(6).with_plasma_frequency(1).with_pole(
+        dispersion_builder.with_dielectric_constant(6).with_plasma_frequency(1).add_pole(
             peak_strength=6*5.37e15**2,
             damping_constant=6.216e13,
             peak_position=0
-        ).with_pole(
+        ).add_pole(
             peak_strength=6*2.263e15**2,
             damping_constant=1.332e15,
             peak_position=4.572e15
-        )
+        ).with_angular_frequency(angular_frequency)
 
-        dispersion_relation = dispersion_builder.build_dispersion_relation()
-
-        actual_permittivity = dispersion_relation(angular_frequency)
+        # When
+        actual_permittivity = dispersion_builder.permittivity()
 
         # Then
         self.assertTrue(np.allclose(
