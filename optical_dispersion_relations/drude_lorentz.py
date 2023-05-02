@@ -10,7 +10,17 @@ class DrudeLorentz:
         self.plasma_frequency = 0
 
     def with_dielectric_constant(self, dielectric_constant):
-        pass
+        '''
+        Paramerers
+        ----------
+        dielectric_constant: float, offset permittivity due to positive ion cores
+
+        Returns
+        -------
+        the instance
+        '''
+        self.dielectric_constant = dielectric_constant
+        return self
 
     def with_plasma_frequency(self, plasma_frequency):
         pass
