@@ -11,12 +11,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * `wavelength_to_wavenumber` utility function.
 * `dielectric_waveguide` module function parameter and return types.
+* `DrudeLorentz` class for building dispersion relations.
 
 ### Changed
 
 * BREAKING: Change polarisation to lowercase in transendential slab waveguide functions:
 	* `transcendential_slab_waveguide_te`
 	* `transcendential_slab_waveguide_tm`
+
+### Fixed
+
+* `lorentz_oscillator` return type.
 
 ## [v0.1.1](https://github.com/g-duff/optical_dispersion_relations/releases/v0.1.1)
 
