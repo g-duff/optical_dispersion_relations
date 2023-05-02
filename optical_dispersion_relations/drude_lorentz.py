@@ -9,7 +9,7 @@ class DrudeLorentz:
         self.dielectric_constant = 1
         self.plasma_frequency = 0
 
-    def with_dielectric_constant(self, dielectric_constant):
+    def with_dielectric_constant(self, dielectric_constant: float):
         '''
         Paramerers
         ----------
@@ -22,7 +22,7 @@ class DrudeLorentz:
         self.dielectric_constant = dielectric_constant
         return self
 
-    def with_plasma_frequency(self, plasma_frequency):
+    def with_plasma_frequency(self, plasma_frequency: float):
         '''
         Paramerers
         ----------
@@ -35,7 +35,11 @@ class DrudeLorentz:
         self.plasma_frequency = plasma_frequency
         return self
 
-    def with_pole(self, damping_constant: float, peak_position: float = 0, peak_strength: float = 1):
+    def with_pole(self,
+                  damping_constant: float,
+                  peak_position: float = 0,
+                  peak_strength: float = 1
+                  ):
         '''
         Parameters
         ----------
