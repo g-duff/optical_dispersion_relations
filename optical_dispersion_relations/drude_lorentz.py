@@ -35,8 +35,20 @@ class DrudeLorentz:
         self.plasma_frequency = plasma_frequency
         return self
 
-    def with_pole(self, damping_rate, peak_strength, peak_position):
-        pass
+    def with_pole(self, damping_constant: float, peak_position: float = 0, peak_strength: float = 1):
+        '''
+        Parameters
+        ----------
+        peak_strength: float, the relative strength of the peaks
+        damping_constant: float, characteristic collision frequency of the metal
+        peak_position: float, the Lorentz oscillator peak position
+
+        Returns
+        -------
+        the instance
+        '''
+        self.poles.append((damping_constant, peak_position, peak_strength))
+        return self
 
     def build_dispersion_relation(self):
         pass
