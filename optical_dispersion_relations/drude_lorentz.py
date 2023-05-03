@@ -1,8 +1,16 @@
 '''Drude Lorentz Dispersion Relations'''
 
+from collections import namedtuple
+
 
 class DrudeLorentz:
     '''Build Drude Lorentz dispersion relations.'''
+
+    Pole = namedtuple("Pole", [
+        'damping_constant',
+        'peak_position',
+        'peak_strength',
+    ])
 
     def __init__(self):
         self.poles = []
@@ -52,7 +60,8 @@ class DrudeLorentz:
         -------
         the instance
         '''
-        self.poles.append((damping_constant, peak_position, peak_strength))
+        self.poles.append(self.Pole(damping_constant,
+                          peak_position, peak_strength))
         return self
 
     def with_angular_frequency(self, angular_frequency):
@@ -76,10 +85,10 @@ class DrudeLorentz:
         '''
         permittivity = self.dielectric_constant - self.plasma_frequency**2 * \
             sum(
-                peak_strength *
+                pole.peak_strength *
                 lorentz_oscillator(self.angular_frequency,
-                                   peak_position, damping_constant)
-                for damping_constant, peak_position, peak_strength in self.poles
+                                   pole.peak_position, pole.damping_constant)
+                for pole in self.poles
             )
         return permittivity
 
