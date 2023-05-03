@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * `wavelength_to_wavenumber` utility function.
 * `dielectric_waveguide` module function parameter and return types.
-* `DrudeLorentz` class for building dispersion relations.
+* `DrudeLorentz` class for building Drude-Lorentz dispersion relations.
 
 ### Changed
 
