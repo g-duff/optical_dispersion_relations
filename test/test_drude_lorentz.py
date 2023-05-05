@@ -61,8 +61,8 @@ class Builder(unittest.TestCase):
 class SinglePole(unittest.TestCase):
 
     def test_large_frequency(self):
-        '''Test against Rigorous modal analysis of Plasmonic Nanoresonators", Phys. Rev. B 97, 205422 (2018)
-        DOI: https://doi.org/10.1103/PhysRevB.97.205422'''
+        '''Test against section 1.2, Maier SA. Plasmonics: fundamentals and applications.
+        ISBN: 978-0-387-37825-1'''
         # Given
         dielectric_constant = 2
         angular_frequency = 1e2
@@ -83,8 +83,8 @@ class SinglePole(unittest.TestCase):
         self.assertAlmostEqual(expected_permittivity, actual_permittivity)
 
     def test_plasma_frequency(self):
-        '''Test against Rigorous modal analysis of Plasmonic Nanoresonators", Phys. Rev. B 97, 205422 (2018)
-        DOI: https://doi.org/10.1103/PhysRevB.97.205422'''
+        '''Test against section 1.2, Maier SA. Plasmonics: fundamentals and applications.
+        ISBN: 978-0-387-37825-1'''
         # Given
         angular_frequency = 1e2
         plasma_frequency = 5e2
