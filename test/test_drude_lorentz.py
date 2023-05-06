@@ -7,9 +7,10 @@ from optical_dispersion_relations import drude_lorentz
 class Builder(unittest.TestCase):
 
     def test_silver_parameters(self):
-        '''Test against "Rigorous modal analysis of Plasmonic Nanoresonators",
+        """Test against "Rigorous modal analysis of Plasmonic Nanoresonators",
         Phys. Rev. B 97, 205422 (2018)
-        DOI: https://doi.org/10.1103/PhysRevB.97.205422'''
+        DOI: https://doi.org/10.1103/PhysRevB.97.205422
+        """
         # Given
         angular_frequency = np.array([4.18879020e+15, 3.42719199e+15,
                                       2.89993168e+15, 2.51327412e+15,
@@ -29,9 +30,10 @@ class Builder(unittest.TestCase):
             expected_permittivity, actual_permittivity))
 
     def test_gold_parameters(self):
-        '''Test against "Rigorous modal analysis of Plasmonic Nanoresonators",
+        """Test against "Rigorous modal analysis of Plasmonic Nanoresonators",
         Phys. Rev. B 97, 205422 (2018)
-        DOI: https://doi.org/10.1103/PhysRevB.97.205422'''
+        DOI: https://doi.org/10.1103/PhysRevB.97.205422
+        """
         # Given
         angular_frequency = np.array([4.18879020e+15, 3.42719199e+15,
                                       2.89993168e+15, 2.51327412e+15,
@@ -63,8 +65,9 @@ class Builder(unittest.TestCase):
 class SinglePole(unittest.TestCase):
 
     def test_large_frequency(self):
-        '''Test against section 1.2, Maier SA. Plasmonics: fundamentals and applications.
-        ISBN: 978-0-387-37825-1'''
+        """Test against section 1.2, Maier SA. Plasmonics: fundamentals and applications.
+        ISBN: 978-0-387-37825-1
+        """
         # Given
         dielectric_constant = 2
         angular_frequency = 1e2
@@ -85,8 +88,9 @@ class SinglePole(unittest.TestCase):
         self.assertAlmostEqual(expected_permittivity, actual_permittivity)
 
     def test_plasma_frequency(self):
-        '''Test against section 1.2, Maier SA. Plasmonics: fundamentals and applications.
-        ISBN: 978-0-387-37825-1'''
+        """Test against section 1.2, Maier SA. Plasmonics: fundamentals and applications.
+        ISBN: 978-0-387-37825-1
+        """
         # Given
         angular_frequency = 1e2
         plasma_frequency = 5e2
@@ -106,9 +110,10 @@ class SinglePole(unittest.TestCase):
                                actual_permittivity, places=2)
 
     def test_silver_parameters(self):
-        '''Test against "Rigorous modal analysis of Plasmonic Nanoresonators",
+        """Test against "Rigorous modal analysis of Plasmonic Nanoresonators",
         Phys. Rev. B 97, 205422 (2018)
-        DOI: https://doi.org/10.1103/PhysRevB.97.205422'''
+        DOI: https://doi.org/10.1103/PhysRevB.97.205422
+        """
         # Given
         silver_drude_parameters = {
             'plasma_frequency': 1.35e16,
@@ -133,9 +138,10 @@ class SinglePole(unittest.TestCase):
 class DoublePole(unittest.TestCase):
 
     def test_gold_parameters(self):
-        '''Test against "Rigorous modal analysis of Plasmonic Nanoresonators",
+        """Test against "Rigorous modal analysis of Plasmonic Nanoresonators",
         Phys. Rev. B 97, 205422 (2018)
-        DOI: https://doi.org/10.1103/PhysRevB.97.205422'''
+        DOI: https://doi.org/10.1103/PhysRevB.97.205422
+        """
         # Given
         gold_drude_parameters = {
             'dielectric_constant': 6,

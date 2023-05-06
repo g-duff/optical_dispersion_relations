@@ -5,9 +5,9 @@ from optical_dispersion_relations import dielectric_waveguides
 
 
 class TranscendentialSlabWaveguide(unittest.TestCase):
-    '''Benchmarks from Online Mode Solver: 1-D mode solver for dielectric multilayer slab waveguides
+    """Benchmarks from Online Mode Solver: 1-D mode solver for dielectric multilayer slab waveguides
     https://www.siio.eu/oms.html
-    '''
+    """
 
     def test_te_constants_benchmark(self):
         # Given

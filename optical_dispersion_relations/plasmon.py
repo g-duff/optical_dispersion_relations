@@ -1,10 +1,11 @@
-'''Plasmonics Dispersion Relations'''
+"""Plasmonics Dispersion Relations"""
+
 import numpy as np
 
 
 def surface_plasmon_polariton(dielectric_permittivity: float,
                               metal_permittivity: complex) -> complex:
-    '''Exact surface plasmon dispersion relation for TM polarization.
+    """Exact surface plasmon dispersion relation for TM polarization.
     Surface plasmons only exist for TM polarization.
 
     Parameters
@@ -20,7 +21,7 @@ def surface_plasmon_polariton(dielectric_permittivity: float,
     ----------
     Maier SA. Plasmonics: Fundamentals and Applications.
     ISBN: 978-0-387-37825-1
-    '''
+    """
     numerator = dielectric_permittivity*metal_permittivity
     denominator = dielectric_permittivity+metal_permittivity
     effective_refractive_index = np.sqrt(numerator/denominator)
@@ -31,7 +32,7 @@ def metal_insulator_metal_collin_approximation(dielectric_permittivity: float,
                                                metal_permittivity: complex,
                                                wavelength: float,
                                                insulator_thickness: float) -> complex:
-    '''Approximate metal-insulator-metal waveguide dispersion relation for TM polarization.
+    """Approximate metal-insulator-metal waveguide dispersion relation for TM polarization.
 
     Parameters
     ----------
@@ -48,7 +49,7 @@ def metal_insulator_metal_collin_approximation(dielectric_permittivity: float,
     ----------
     Waveguiding in nanoscale metallic apertures.
     https://doi.org/10.1364/OE.15.004310
-    '''
+    """
     surface_plasmon_coupling_term = wavelength * \
         np.sqrt(1-dielectric_permittivity/metal_permittivity) / \
         (np.pi*insulator_thickness*np.sqrt(-1*metal_permittivity))
@@ -61,7 +62,7 @@ def metal_insulator_metal_sondergaard_narrow_approximation(dielectric_permittivi
                                                            metal_permittivity: complex,
                                                            wavelength: float,
                                                            insulator_thickness: float) -> complex:
-    '''Approximate metal-insulator-metal waveguide dispersion relation for TM polarization.
+    """Approximate metal-insulator-metal waveguide dispersion relation for TM polarization.
 
     Parameters
     ----------
@@ -77,7 +78,7 @@ def metal_insulator_metal_sondergaard_narrow_approximation(dielectric_permittivi
     Derivation
     ----------
     General properties of slow-plasmon resonant nanostructures: nano-antennas and resonators.
-    https://doi.org/10.1364/OE.15.010869'''
+    https://doi.org/10.1364/OE.15.010869"""
     freespace_wavenumber = 2 * np.pi / wavelength
 
     narrow_gap_limit_propagation_constant = -2 * dielectric_permittivity \

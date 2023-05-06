@@ -1,4 +1,4 @@
-# pylint: disable = import-error, missing-class-docstring, missing-function-docstring, missing-module-docstring
+#  pylint: disable = import-error, missing-class-docstring, missing-function-docstring, missing-module-docstring
 import unittest
 import numpy as np
 from optical_dispersion_relations import plasmon
@@ -7,8 +7,9 @@ from optical_dispersion_relations import plasmon
 class SurfacePlasmonPolariton(unittest.TestCase):
 
     def test_constants_from_textbook(self):
-        '''Test against fig 2.3 in Maier SA. Plasmonics: fundamentals and applications.
-        ISBN: 978-0-387-37825-1'''
+        """Test against fig 2.3 in Maier SA. Plasmonics: fundamentals and applications.
+        ISBN: 978-0-387-37825-1
+        """
         # Given
         dielectric_permittivity = 1
         metal_permittivity = np.array([-99. + 0.j,
@@ -45,8 +46,9 @@ class SurfacePlasmonPolariton(unittest.TestCase):
 
 
 class MetalInsulatorMetalCollinApproximation(unittest.TestCase):
-    '''Test against fig 2 in Waveguiding in nanoscale metallic apertures.
-    https://doi.org/10.1364/OE.15.004310'''
+    """Test against fig 2 in Waveguiding in nanoscale metallic apertures.
+    https://doi.org/10.1364/OE.15.004310
+    """
 
     def test_thick_insulator(self):
         # Given
@@ -94,9 +96,10 @@ class MetalInsulatorMetalCollinApproximation(unittest.TestCase):
 
 
 class MetalInsulatorMetalSondergaardNarrowApproximation(unittest.TestCase):
-    '''Test against fig 4 in
+    """Test against fig 4 in
     General properties of slow-plasmon resonant nanostructures: nano-antennas and resonators.
-    https://doi.org/10.1364/OE.15.010869'''
+    https://doi.org/10.1364/OE.15.010869
+    """
 
     def test_insulator_constants(self):
         # Given

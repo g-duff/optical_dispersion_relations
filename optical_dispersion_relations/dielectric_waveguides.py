@@ -1,4 +1,4 @@
-'''Dielectric Waveduide dispersions'''
+"""Dielectric Waveduide dispersions"""
 
 import numpy as np
 from numpy.lib import scimath
@@ -13,7 +13,7 @@ def transcendential_slab_waveguide_te(
     substrate_refractive_index: float,
 ) -> float:
     # pylint: disable = too-many-arguments
-    '''Transcendential equation for a slab waveguide with TE polarization.
+    """Transcendential equation for a slab waveguide with TE polarization.
     Find the value of waveguide_propagation_constant for which the function equals zero
     to solve the system.
 
@@ -35,7 +35,7 @@ def transcendential_slab_waveguide_te(
     Yariv, A. Optical Electronics.
     ISBN-10: 0030474442
     ISBN-13: 9780030474446
-    '''
+    """
 
     cover_wavenumber = cover_refractive_index * free_space_wavenumber
     guiding_layer_wavenumber = guiding_layer_refractive_index * free_space_wavenumber
@@ -68,7 +68,7 @@ def transcendential_slab_waveguide_tm(
     substrate_refractive_index: float,
 ) -> float:
     # pylint: disable = too-many-arguments
-    '''Transcendential equation for a slab waveguide with TM polarization.
+    """Transcendential equation for a slab waveguide with TM polarization.
     Find the value of waveguide_propagation_constant for which the function equals zero
     to solve the system.
 
@@ -90,7 +90,7 @@ def transcendential_slab_waveguide_tm(
     Yariv, A. Optical Electronics.
     ISBN-10: 0030474442
     ISBN-13: 9780030474446
-    '''
+    """
 
     cover_wavenumber = cover_refractive_index * free_space_wavenumber
     guiding_layer_wavenumber = guiding_layer_refractive_index * free_space_wavenumber
