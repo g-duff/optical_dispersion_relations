@@ -39,7 +39,19 @@ pipeline {
 			when { tag pattern: "v[0-9]*\\.[0-9]*\\.[0.9]", comparator: "REGEXP"} 
 			steps {
 				script {
-					echo 'publish'
+					if (currentBuild.currentResult == 'SUCCESS') {
+						withCredentials([string(credentialsId: 'PyPIToken', variable: 'TOKEN')]) {
+							sh '''. ./.venv/bin/activate
+							python3 -m build
+							python3 -m pip install --upgrade twine
+							python3 -m twine upload dist/* \
+								--username __token__ \
+								--password $TOKEN \
+							'''
+						}
+					} else {
+						error('Publish aborted due to unstable build')
+					}
 				}
 			}
 		}
