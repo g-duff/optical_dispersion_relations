@@ -7,7 +7,8 @@ from optical_dispersion_relations import drude_lorentz
 class Builder(unittest.TestCase):
 
     def test_silver_parameters(self):
-        '''Test against Rigorous modal analysis of Plasmonic Nanoresonators", Phys. Rev. B 97, 205422 (2018)
+        '''Test against "Rigorous modal analysis of Plasmonic Nanoresonators",
+        Phys. Rev. B 97, 205422 (2018)
         DOI: https://doi.org/10.1103/PhysRevB.97.205422'''
         # Given
         angular_frequency = np.array([4.18879020e+15, 3.42719199e+15,
@@ -28,7 +29,8 @@ class Builder(unittest.TestCase):
             expected_permittivity, actual_permittivity))
 
     def test_gold_parameters(self):
-        '''Test against Rigorous modal analysis of Plasmonic Nanoresonators", Phys. Rev. B 97, 205422 (2018)
+        '''Test against "Rigorous modal analysis of Plasmonic Nanoresonators",
+        Phys. Rev. B 97, 205422 (2018)
         DOI: https://doi.org/10.1103/PhysRevB.97.205422'''
         # Given
         angular_frequency = np.array([4.18879020e+15, 3.42719199e+15,
@@ -104,7 +106,8 @@ class SinglePole(unittest.TestCase):
                                actual_permittivity, places=2)
 
     def test_silver_parameters(self):
-        '''Test against Rigorous modal analysis of Plasmonic Nanoresonators", Phys. Rev. B 97, 205422 (2018)
+        '''Test against "Rigorous modal analysis of Plasmonic Nanoresonators",
+        Phys. Rev. B 97, 205422 (2018)
         DOI: https://doi.org/10.1103/PhysRevB.97.205422'''
         # Given
         silver_drude_parameters = {
@@ -130,7 +133,8 @@ class SinglePole(unittest.TestCase):
 class DoublePole(unittest.TestCase):
 
     def test_gold_parameters(self):
-        '''Test against Rigorous modal analysis of Plasmonic Nanoresonators", Phys. Rev. B 97, 205422 (2018)
+        '''Test against "Rigorous modal analysis of Plasmonic Nanoresonators",
+        Phys. Rev. B 97, 205422 (2018)
         DOI: https://doi.org/10.1103/PhysRevB.97.205422'''
         # Given
         gold_drude_parameters = {
