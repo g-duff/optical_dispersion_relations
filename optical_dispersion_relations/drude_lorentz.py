@@ -1,10 +1,10 @@
-'''Drude Lorentz Dispersion Relations'''
+"""Drude Lorentz Dispersion Relations"""
 
 from collections import namedtuple
 
 
 class DrudeLorentz:
-    '''Build Drude Lorentz dispersion relations.'''
+    """Build Drude Lorentz dispersion relations."""
 
     Pole = namedtuple("Pole", [
         'damping_constant',
@@ -19,28 +19,26 @@ class DrudeLorentz:
         self.angular_frequency = 0
 
     def with_dielectric_constant(self, dielectric_constant: float):
-        '''
-        Paramerers
+        """Paramerers
         ----------
         dielectric_constant: float, offset permittivity due to positive ion cores
 
         Returns
         -------
         the instance
-        '''
+        """
         self.dielectric_constant = dielectric_constant
         return self
 
     def with_plasma_frequency(self, plasma_frequency: float):
-        '''
-        Paramerers
+        """Paramerers
         ----------
         plasma_frequency: float, natural frequency of a free oscillation of the electron sea
 
         Returns
         -------
         the instance
-        '''
+        """
         self.plasma_frequency = plasma_frequency
         return self
 
@@ -49,8 +47,7 @@ class DrudeLorentz:
                  peak_position: float = 0,
                  peak_strength: float = 1
                  ):
-        '''
-        Parameters
+        """Parameters
         ----------
         peak_strength: float, the relative strength of the peaks
         damping_constant: float, characteristic collision frequency of the metal
@@ -59,30 +56,28 @@ class DrudeLorentz:
         Returns
         -------
         the instance
-        '''
+        """
         self.poles.append(self.Pole(damping_constant,
                           peak_position, peak_strength))
         return self
 
     def with_angular_frequency(self, angular_frequency):
-        '''
-        Paramerers
+        """Paramerers
         ----------
         angular_frequency: float, the angular frequency at which to calculate the permittivity
 
         Returns
         -------
         the instance
-        '''
+        """
         self.angular_frequency = angular_frequency
         return self
 
     def permittivity(self):
-        '''
-        Returns
+        """Returns
         -------
         The Drude-Lorentz dispersion relation as a function of angular frequency
-        '''
+        """
         permittivity = self.dielectric_constant - self.plasma_frequency**2 * \
             sum(
                 pole.peak_strength *
@@ -99,7 +94,7 @@ def single_pole(angular_frequency: float,
                 dielectric_constant: float = 1,
                 peak_position: float = 0
                 ) -> complex:
-    '''Single Pole Drude-Lorentz Dispersion Relation, for use with eg Silver
+    """Single Pole Drude-Lorentz Dispersion Relation, for use with eg Silver
 
     Parameters
     ----------
@@ -112,7 +107,7 @@ def single_pole(angular_frequency: float,
     Returns
     -------
     Complex permittivity at the specified angular_frequency: complex
-    '''
+    """
     permittivity = dielectric_constant - plasma_frequency**2 * lorentz_oscillator(
         frequency=angular_frequency,
         peak_position=peak_position,
@@ -127,7 +122,7 @@ def double_pole(angular_frequency: float,
                 first_pole: dict,
                 second_pole: dict
                 ) -> complex:
-    '''Double Pole Drude-Lorentz Dispersion Relation, for use with eg Gold
+    """Double Pole Drude-Lorentz Dispersion Relation, for use with eg Gold
 
     Parameters
     ----------
@@ -143,7 +138,7 @@ def double_pole(angular_frequency: float,
     Returns
     -------
     Complex permittivity at the specified angular_frequency: complex
-    '''
+    """
     permittivity = dielectric_constant * plasma_frequency**2 * (
         1
         - first_pole['peak_strength']*lorentz_oscillator(
@@ -163,7 +158,7 @@ def double_pole(angular_frequency: float,
 def lorentz_oscillator(frequency: float,
                        peak_position: float,
                        damping_constant: float) -> complex:
-    '''Lorentz Oscillator
+    """Lorentz Oscillator
 
     Parameters
     ----------
@@ -174,7 +169,7 @@ def lorentz_oscillator(frequency: float,
     Returns
     -------
     Oscillator amplitude at the specified frequency: complex
-    '''
+    """
     denominator = frequency**2 - peak_position**2 \
         + 1j*damping_constant * frequency
     return 1/denominator
