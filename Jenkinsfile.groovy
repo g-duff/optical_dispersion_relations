@@ -35,6 +35,14 @@ pipeline {
 				}
 			}
 		}
+		stage('Publish') {
+			when { tag pattern: "v[0-9]*\\.[0-9]*\\.[0.9]", comparator: "REGEXP"} 
+			steps {
+				script {
+					echo 'publish'
+				}
+			}
+		}
 	}
 
 	post {
