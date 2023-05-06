@@ -7,7 +7,6 @@ environment_bin := ${environment}/bin
 
 # Default Goal
 dev_dependencies: .venv
-	${environment_bin}/pip3 install --upgrade pip
 	${environment_bin}/pip3 install -r ./requirements/dev.txt
 
 clean:
@@ -27,3 +26,4 @@ test:
 
 .venv:
 	python3 -m venv ${environment}
+	${environment_bin}/pip3 install --upgrade pip
