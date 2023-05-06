@@ -8,7 +8,7 @@ pipeline {
 
 		stage('Install dependencies') {
 			steps {
-				sh "make dev_dependencies"
+				sh 'make dev_dependencies'
 			}
 		}
 
@@ -16,7 +16,7 @@ pipeline {
 			steps {
 				script {
 					try {
-						sh "make lint"
+						sh 'make lint'
 					} catch (error) {
 						unstable(message: "${STAGE_NAME} is unstable")
 					}
@@ -28,7 +28,7 @@ pipeline {
 			steps {
 				script {
 					try {
-						sh "make test"
+						sh 'make test'
 					} catch (error) {
 						unstable(message: "${STAGE_NAME} is unstable")
 					}
@@ -46,19 +46,19 @@ pipeline {
 
 		success {
 			script {
-				notifyGitHubBuildStatus("optical_dispersion_relations", "success")
+				notifyGitHubBuildStatus('optical_dispersion_relations', 'success')
 			}
 		}
 
 		unstable {
 			script {
-				notifyGitHubBuildStatus("optical_dispersion_relations", "failure")
+				notifyGitHubBuildStatus('optical_dispersion_relations', 'failure')
 			}
 		}
 
 		failure {
 			script {
-				notifyGitHubBuildStatus("optical_dispersion_relations", "error")
+				notifyGitHubBuildStatus('optical_dispersion_relations', 'error')
 			}
 		}
 
