@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## [v0.2.0](https://github.com/g-duff/optical_dispersion_relations/releases/v0.2.0)
+
 ### Added
 
 * `wavelength_to_wavenumber` utility function.
