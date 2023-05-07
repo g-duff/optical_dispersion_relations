@@ -25,7 +25,10 @@ format:
 		./examples/scripts/*py
 
 lint:
-	${environment_bin}/pylint ./optical_dispersion_relations/*py ./test/*py
+	${environment_bin}/pylint \
+		./optical_dispersion_relations/*py \
+		./test/*py \
+		./examples/scripts/*py
 
 test:
 	${environment_bin}/python3 -m unittest discover ./test/ 'test_*.py'
