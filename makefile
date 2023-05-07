@@ -21,14 +21,12 @@ examples_dependencies: .venv
 format:
 	${environment_bin}/autopep8 --in-place \
 		./optical_dispersion_relations/*py \
-		./test/*py \
-		./examples/scripts/*py
+		./test/*py
 
 lint:
 	${environment_bin}/pylint \
 		./optical_dispersion_relations/*py \
-		./test/*py \
-		./examples/scripts/*py
+		./test/*py
 
 test:
 	${environment_bin}/python3 -m unittest discover ./test/ 'test_*.py'
