@@ -15,7 +15,7 @@ class DrudeLorentz:
     def __init__(self):
         self.poles = []
         self.dielectric_constant = 1
-        self.plasma_frequency = 0
+        self.plasma_frequency = 1
         self.angular_frequency = 0
 
     def with_dielectric_constant(self, dielectric_constant: float):
