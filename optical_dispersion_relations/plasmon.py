@@ -3,8 +3,10 @@
 import numpy as np
 
 
-def surface_plasmon_polariton(dielectric_permittivity: float,
-                              metal_permittivity: complex) -> complex:
+def surface_plasmon_polariton(
+    dielectric_permittivity: float,
+    metal_permittivity: complex
+) -> complex:
     """Exact surface plasmon dispersion relation for TM polarization.
     Surface plasmons only exist for TM polarization.
 
@@ -28,10 +30,12 @@ def surface_plasmon_polariton(dielectric_permittivity: float,
     return effective_refractive_index
 
 
-def metal_insulator_metal_collin_approximation(dielectric_permittivity: float,
-                                               metal_permittivity: complex,
-                                               wavelength: float,
-                                               insulator_thickness: float) -> complex:
+def metal_insulator_metal_collin_approximation(
+    dielectric_permittivity: float,
+    metal_permittivity: complex,
+    wavelength: float,
+    insulator_thickness: float
+) -> complex:
     """Approximate metal-insulator-metal waveguide dispersion relation for TM polarization.
 
     Parameters
@@ -58,10 +62,12 @@ def metal_insulator_metal_collin_approximation(dielectric_permittivity: float,
     return effective_refractive_index
 
 
-def metal_insulator_metal_sondergaard_narrow_approximation(dielectric_permittivity: float,
-                                                           metal_permittivity: complex,
-                                                           wavelength: float,
-                                                           insulator_thickness: float) -> complex:
+def metal_insulator_metal_sondergaard_narrow_approximation(
+    dielectric_permittivity: float,
+    metal_permittivity: complex,
+    wavelength: float,
+    insulator_thickness: float
+) -> complex:
     """Approximate metal-insulator-metal waveguide dispersion relation for TM polarization.
 
     Parameters
