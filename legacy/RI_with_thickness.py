@@ -1,10 +1,10 @@
 import numpy as np
-import scipy.constants as spc
 from scipy.interpolate import griddata
 import scipy.optimize as opt
 import matplotlib
 import matplotlib.pyplot as plt
-import mim_dispersions as dsp
+
+from optical_dispersion_relations import plasmon
 
 font = {'size':16}
 matplotlib.rc('font', **font)
@@ -36,7 +36,7 @@ m_eps = (m_n + 1j*m_k)**2
 i_eps = i_n**2
 
 ## Calcualte spp neff
-spp_n_eff = dsp.spp_neff(i_eps, m_eps)
+spp_n_eff = plasmon.surface_plasmon_polariton(i_eps, m_eps)
 spp_beta = spp_n_eff*k0
 
 # Starting estimate for Newton-Raphson
@@ -45,7 +45,7 @@ t_sweep = []
 
 for ti in t_i:
 	# Newton-Raphson process, decreasing gap thickness
-	newt = opt.newton(dsp.mim_disp, newt, args=(k0, m_eps, i_eps, ti),
+	newt = opt.newton(plasmon.transcendential_trilayer_even_magnetic_field, newt, args=(wl, ti, i_eps, m_eps),
 		maxiter=int(1e6), tol=1e3)
 	t_sweep.append(newt.real/k0)
 
