@@ -30,8 +30,10 @@ sondergaard_approximation = plasmon.metal_insulator_metal_sondergaard_narrow_app
     **sondergaard_approximation_parameters
 )
 
-collin_approximation_figure, (collin_approximation_axes) = plt.subplots(ncols=1)
-sondergaard_approximation_figure, (sondergaard_approximation_axes) = plt.subplots(ncols=1)
+collin_approximation_figure, (collin_approximation_axes) = plt.subplots(
+    ncols=1)
+sondergaard_approximation_figure, (sondergaard_approximation_axes) = plt.subplots(
+    ncols=1)
 
 collin_approximation_axes.set_title(
     'Fig. 2 from \nhttps://doi.org/10.1364/OE.15.004310')
@@ -47,7 +49,8 @@ collin_approximation_axes.set_ylim(0.0, 3.0)
 collin_approximation_axes.set_ylabel(r'Effective index $n_{1D}$')
 collin_approximation_axes.legend()
 collin_approximation_figure.tight_layout()
-collin_approximation_figure.savefig('./images/collin_approximation_example.png')
+collin_approximation_figure.savefig(
+    './images/collin_approximation_example.png')
 
 sondergaard_approximation_axes.set_title(
     'Fig. 4 from \nhttps://doi.org/10.1364/OE.15.010869')
@@ -63,4 +66,5 @@ sondergaard_approximation_axes.set_ylabel('Mode effective index')
 sondergaard_approximation_axes.legend()
 
 sondergaard_approximation_figure.tight_layout()
-sondergaard_approximation_figure.savefig('../images/sondergaard_approximation_example.png')
+sondergaard_approximation_figure.savefig(
+    '../images/sondergaard_approximation_example.png')

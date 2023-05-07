@@ -52,14 +52,14 @@ if __name__ == '__main__':
         angular_frequency, **GOLD_DRUDE_PARAMETERS)
 
     silver_wavelengths, silver_refractive_index, silver_extinction_coefficient = \
-            np.genfromtxt(SILVER_FILEPATH, **FILE_FORMAT)
+        np.genfromtxt(SILVER_FILEPATH, **FILE_FORMAT)
     gold_wavelengths, gold_refractive_index, gold_extinction_coefficient = \
-            np.genfromtxt(GOLD_FILEPATH, **FILE_FORMAT)
+        np.genfromtxt(GOLD_FILEPATH, **FILE_FORMAT)
 
     silver_empirical_permittivity = utilities.refractive_index_to_permittivity(
-            silver_refractive_index + 1j*silver_extinction_coefficient)
+        silver_refractive_index + 1j*silver_extinction_coefficient)
     gold_empirical_permittivity = utilities.refractive_index_to_permittivity(
-            gold_refractive_index + 1j*gold_extinction_coefficient)
+        gold_refractive_index + 1j*gold_extinction_coefficient)
 
     fig, (real_part_axes, imaginary_part_axes) = plt.subplots(
         ncols=2, figsize=(8, 4))
