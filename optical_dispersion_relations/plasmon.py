@@ -1,6 +1,7 @@
 """Plasmonics Dispersion Relations"""
 
 import numpy as np
+from numpy.lib import scimath
 
 from optical_dispersion_relations import utilities
 
@@ -108,3 +109,33 @@ def metal_insulator_metal_sondergaard_narrow_approximation(
         )
     effective_refractive_index = np.sqrt(effective_permittivity)
     return effective_refractive_index
+
+
+def transcendential_trilayer_even_magnetic_field(
+    propagation_constant: complex,
+    wavelength: float,
+    thickness: float,
+    middle_layer_permittivity: 'float | complex',
+    outer_layers_permittivity: 'float | complex',
+) -> complex:
+    """Describes a metal-insulator-metal or insulator-metal-insulator symmetrical stack,
+    odd vector parity modes / the magnetic field is an even function.
+    """
+    freespace_wavenumber = utilities.wavelength_to_wavenumber(wavelength)
+
+    middle_layer_wavevector_perpendicular_component = scimath.sqrt(
+        propagation_constant**2 - middle_layer_permittivity*freespace_wavenumber**2
+    )
+    outer_layers_wavevector_perpendicular_component = scimath.sqrt(
+        propagation_constant**2 - outer_layers_permittivity*freespace_wavenumber**2
+    )
+
+    transcendential_function_value = np.tanh(
+        middle_layer_wavevector_perpendicular_component * thickness / 2
+    )
+
+    algebraic_function_value = -1 * \
+        (outer_layers_wavevector_perpendicular_component * middle_layer_permittivity) / \
+        (middle_layer_wavevector_perpendicular_component * outer_layers_permittivity)
+
+    return transcendential_function_value - algebraic_function_value
