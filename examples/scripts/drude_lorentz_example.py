@@ -11,12 +11,6 @@ from optical_dispersion_relations import utilities
 matplotlib.rc('font', size=12)
 
 
-SILVER_DRUDE_PARAMETERS = {
-    'dielectric_constant': 1,
-    'plasma_frequency': 1.35e16,
-    'damping_constant': 0.0023*1.35e16,
-}
-
 GOLD_DRUDE_PARAMETERS = {
     'dielectric_constant': 6,
     'plasma_frequency': 1,
@@ -46,8 +40,12 @@ if __name__ == '__main__':
 
     angular_frequency = 2*const.pi*const.speed_of_light/(wavelengths)
 
-    silver_permittivity = drude_lorentz.single_pole(
-        angular_frequency, **SILVER_DRUDE_PARAMETERS)
+    silver_permittivity = drude_lorentz.DrudeLorentz().with_angular_frequency(
+            angular_frequency
+    ).with_plasma_frequency(1.35e16).add_pole(
+            damping_constant=0.0023*1.35e16
+    ).permittivity()
+
     gold_permittivity = drude_lorentz.double_pole(
         angular_frequency, **GOLD_DRUDE_PARAMETERS)
 
