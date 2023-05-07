@@ -11,36 +11,30 @@
 * Silver permittivity can be calculated with a Single Pole Drude-Lorentz model:
 
 ```py
-silver_drude_parameters = {
-	'dielectric_constant': 1,
-	'plasma_frequency': 1.35e16,
-	'damping_constant': 0.0023*1.35e16,
-}
+silver_dispersion = drude_lorentz.DrudeLorentz().with_angular_frequency(
+	angular_frequency
+).with_plasma_frequency(1.35e16).add_pole(
+	damping_constant=0.0023*1.35e16
+)
 
-silver_permittivity = drude_lorentz.single_pole(
-	angular_frequency, **silver_drude_parameters)
+silver_permittivity = silver_dispersion.permittivity()
 ```
 
 * Gold permittivity can be calculated with a Double Pole Drude-Lorentz model:
 
 ```py
-gold_drude_parameters = {
-	'dielectric_constant': 6,
-	'plasma_frequency': 1,
-	'first_pole': {
-		'peak_strength': 5.37e15**2,
-		'damping_constant': 6.216e13,
-		'peak_position': 0,
-	},
-	'second_pole': {
-		'peak_strength': 2.263e15**2,
-		'damping_constant': 1.332e15,
-		'peak_position': 4.572e15
-	}
-}
+gold_dispersion = drude_lorentz.DrudeLorentz().with_dielectric_constant(
+	6
+).with_angular_frequency(angular_frequency).add_pole(
+        peak_strength=6*5.37e15**2,
+        damping_constant=6.216e13,
+).add_pole(
+        peak_strength=6*2.263e15**2,
+        damping_constant=1.332e15,
+        peak_position=4.572e15
+)
 
-gold_permittivity = drude_lorentz.double_pole(
-	angular_frequency, **gold_drude_parameters)
+gold_permittivity = gold_dispersion.permittivity()
 ```
 
 * More examples can be found under `/examples/`.

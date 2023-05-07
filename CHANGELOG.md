@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+
+* BREAKING: Change DrudeLorentz default plasma frequency to 1.
+
+### Fixed
+
+* DrudeLorentz doc permittivity return type.
+
 ## [v0.2.0](https://github.com/g-duff/optical_dispersion_relations/releases/v0.2.0)
 
 ### Added

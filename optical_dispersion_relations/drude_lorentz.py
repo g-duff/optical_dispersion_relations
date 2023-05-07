@@ -15,7 +15,7 @@ class DrudeLorentz:
     def __init__(self):
         self.poles = []
         self.dielectric_constant = 1
-        self.plasma_frequency = 0
+        self.plasma_frequency = 1
         self.angular_frequency = 0
 
     def with_dielectric_constant(self, dielectric_constant: float):
@@ -76,7 +76,7 @@ class DrudeLorentz:
     def permittivity(self):
         """Returns
         -------
-        The Drude-Lorentz dispersion relation as a function of angular frequency
+        Permittivity: float, the Drude-Lorentz permittivity
         """
         permittivity = self.dielectric_constant - self.plasma_frequency**2 * \
             sum(
