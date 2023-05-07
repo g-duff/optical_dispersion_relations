@@ -2,6 +2,8 @@
 
 import numpy as np
 
+from optical_dispersion_relations import utilities
+
 
 def surface_plasmon_polariton(
     dielectric_permittivity: float,
@@ -85,7 +87,7 @@ def metal_insulator_metal_sondergaard_narrow_approximation(
     ----------
     General properties of slow-plasmon resonant nanostructures: nano-antennas and resonators.
     https://doi.org/10.1364/OE.15.010869"""
-    freespace_wavenumber = 2 * np.pi / wavelength
+    freespace_wavenumber = utilities.wavelength_to_wavenumber(wavelength)
 
     narrow_gap_limit_propagation_constant = -2 * dielectric_permittivity \
         / (insulator_thickness * metal_permittivity)
