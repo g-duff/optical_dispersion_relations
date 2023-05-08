@@ -51,11 +51,11 @@ class MetalInsulatorMetalCollinApproximation(unittest.TestCase):
     https://doi.org/10.1364/OE.15.004310
     """
 
-    def test_thick_insulator(self):
+    def test_thick_dielectric(self):
         # Given
         dielectric_permittivity = 1
         metal_permittivity = -50
-        insulator_thickness = 10
+        thickness = 10
         wavelength = 1
 
         expected_effective_refractive_index = 1
@@ -65,7 +65,7 @@ class MetalInsulatorMetalCollinApproximation(unittest.TestCase):
             dielectric_permittivity=dielectric_permittivity,
             metal_permittivity=metal_permittivity,
             wavelength=wavelength,
-            insulator_thickness=insulator_thickness,
+            thickness=thickness,
         )
 
         # Then
@@ -73,11 +73,11 @@ class MetalInsulatorMetalCollinApproximation(unittest.TestCase):
                                actual_effective_refractive_index,
                                places=2)
 
-    def test_thin_insulator(self):
+    def test_thin_dielectric(self):
         # Given
         dielectric_permittivity = 1
         metal_permittivity = -50
-        insulator_thickness = 0.01
+        thickness = 0.01
         wavelength = 1
 
         expected_effective_refractive_index = 2.355
@@ -87,7 +87,7 @@ class MetalInsulatorMetalCollinApproximation(unittest.TestCase):
             dielectric_permittivity=dielectric_permittivity,
             metal_permittivity=metal_permittivity,
             wavelength=wavelength,
-            insulator_thickness=insulator_thickness,
+            thickness=thickness,
         )
 
         # Then

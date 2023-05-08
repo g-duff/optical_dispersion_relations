@@ -37,7 +37,7 @@ def metal_dielectric_metal_collin_approximation(
     dielectric_permittivity: float,
     metal_permittivity: complex,
     wavelength: float,
-    insulator_thickness: float
+    thickness: float
 ) -> complex:
     """Approximate dispersion relation for a finite-thickness dielectric slab
     between two semi-infinite metal half-spaces. TM polarization.
@@ -47,7 +47,7 @@ def metal_dielectric_metal_collin_approximation(
     dielectric_permittivity: float or complex
     metal_permittivity: float or complex
     wavelength, in any unit of distance: float
-    insulator_thickness, in the same unit of distance as wavelength: float
+    thickness, in the same unit of distance as wavelength: float
 
     Returns
     -------
@@ -60,7 +60,7 @@ def metal_dielectric_metal_collin_approximation(
     """
     surface_plasmon_coupling_term = wavelength * \
         np.sqrt(1-dielectric_permittivity/metal_permittivity) / \
-        (np.pi*insulator_thickness*np.sqrt(-1*metal_permittivity))
+        (np.pi*thickness*np.sqrt(-1*metal_permittivity))
     effective_refractive_index = np.sqrt(dielectric_permittivity) * \
         np.sqrt(1 + surface_plasmon_coupling_term)
     return effective_refractive_index
