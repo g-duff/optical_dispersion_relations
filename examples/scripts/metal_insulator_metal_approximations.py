@@ -17,10 +17,10 @@ collin_approximation_parameters = {
 }
 
 sondergaard_approximation_parameters = {
-    'dielectric_permittivity': 1,
-    'metal_permittivity': -23.6+1.69j,
     'wavelength': 775,
     'insulator_thickness': np.arange(1, 3000),
+    'dielectric_permittivity': 1,
+    'metal_permittivity': -23.6+1.69j,
 }
 
 collin_approximation = plasmon.metal_dielectric_metal_collin_approximation(

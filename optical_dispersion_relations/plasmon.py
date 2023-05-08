@@ -67,20 +67,20 @@ def metal_dielectric_metal_collin_approximation(
 
 
 def metal_dielectric_metal_sondergaard_narrow_approximation(
+    wavelength: float,
+    thickness: float,
     dielectric_permittivity: float,
     metal_permittivity: complex,
-    wavelength: float,
-    thickness: float
 ) -> complex:
     """Approximate dispersion relation for a finite-thickness dielectric slab
     between two semi-infinite metal half-spaces. TM polarization.
 
     Parameters
     ----------
-    dielectric_permittivity: float or complex
-    metal_permittivity: float or complex
     wavelength: float, in any unit of distance
     thickness: float, of the insulatr layer in the same unit of distance as wavelength
+    dielectric_permittivity: float or complex
+    metal_permittivity: float or complex
 
     Returns
     -------
