@@ -15,12 +15,12 @@ METAL_DISPERSION_PARAMETERS = {
 }
 
 
-def drude_metal_surface_plasmon_polariton(frequencies, insulator_permittivity):
+def drude_metal_surface_plasmon_polariton(frequencies, dielectric_permittivity):
     '''Surface plasmon polariton dispersion with simple Drude metal'''
     metal_permittivity = drude_lorentz.single_pole(
         frequencies, **METAL_DISPERSION_PARAMETERS)
     effective_refractive_index = plasmon.surface_plasmon_polariton(
-        insulator_permittivity, metal_permittivity)
+        dielectric_permittivity, metal_permittivity)
     return effective_refractive_index
 
 
