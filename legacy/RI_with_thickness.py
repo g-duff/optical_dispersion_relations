@@ -1,64 +1,66 @@
-import numpy as np
-from scipy.interpolate import griddata
-import scipy.optimize as opt
 import matplotlib
 import matplotlib.pyplot as plt
+import numpy as np
+from scipy import constants as const, optimize as opt
+from scipy.interpolate import griddata
 
-from optical_dispersion_relations import plasmon
+from optical_dispersion_relations import plasmon, utilities
 
-font = {'size':16}
+font = {'size': 16}
 matplotlib.rc('font', **font)
 
-## Wavelength Insulator RI and thickness
-wl = 650
-t_i = np.arange(100e-9, 5e-9, -1e-9)
-i_n = 1.45
+FILE_FORMAT = {
+    'unpack': True,
+    'skip_header': 1,
+    'converters': {0: lambda x: float(x)*const.micro}
+}
 
-## Metal refractive index and extinction coefficient
-m_wl, m_n, = np.genfromtxt('./material_dispersions/ag_n.txt',
-	unpack=True, skip_header=1)
-m_k = np.genfromtxt('./material_dispersions/ag_k.txt',
-	unpack=True, skip_header=1, usecols=(1))
+METAL_REFRACTIVE_INDEX_FILEPATH = '../examples/scripts/empirical_data/silver.txt'
 
-# Convert units
-m_wl = m_wl*1e-6	# um to m
-wl = wl*1e-9		# nm to m
+if __name__ == '__main__':
 
-## Calculate wavevector, frequency, energy
-k0 = 2*np.pi/wl
+    ## Wavelength Insulator RI and thickness
+    wavelength = 650*const.nano
+    dielectric_thicknesses = np.arange(100, 5, -1)*const.nano
+    dielectric_refractive_index = 1.45
 
-## Interpolate metal n and k to match user wavelength range
-m_n = griddata(m_wl, m_n, wl, method='cubic')
-m_k = griddata(m_wl, m_k, wl, method='cubic')
+    ## Metal refractive index and extinction coefficient
+    metal_wavelengths, metal_refractive_index, metal_extinction_coefficient = \
+        np.genfromtxt(METAL_REFRACTIVE_INDEX_FILEPATH, **FILE_FORMAT)
 
-## Convert RI to permittivity
-m_eps = (m_n + 1j*m_k)**2
-i_eps = i_n**2
+    wavenumber = utilities.wavelength_to_wavenumber(wavelength)
 
-t_sweep = []
+    ## Interpolate metal n and k to match user wavelength range
+    metal_refractive_index = griddata(metal_wavelengths, metal_refractive_index, wavelength, method='cubic')
+    metal_extinction_coefficient = griddata(metal_wavelengths, metal_extinction_coefficient, wavelength, method='cubic')
 
-for ti in t_i:
-	# Newton-Raphson process, decreasing gap thickness
-    propagation_constant_initial_estimate = k0*plasmon.metal_dielectric_metal_sondergaard_narrow_approximation(
-        wl, ti, i_eps, m_eps 
-    )
-    converged_propagation_constant = opt.newton(
-        func=plasmon.transcendential_trilayer_even_magnetic_field,
-        x0=propagation_constant_initial_estimate,
-        args=(wl, ti, i_eps, m_eps),
-        maxiter=int(1e6),
-        tol=1e3,
-        full_output=True
-    )[0]
-    t_sweep.append(converged_propagation_constant.real/k0)
+    ## Convert RI to permittivity
+    metal_permittivity = utilities.refractive_index_to_permittivity(
+            metal_refractive_index + 1j*metal_extinction_coefficient)
+    dielectric_permittivity = utilities.refractive_index_to_permittivity(dielectric_refractive_index).real
 
-fig, ax = plt.subplots()
-ax.plot(t_i*1e9, t_sweep, label='Silica MIM')
-ax.axhline(i_n, color='C0', ls='--', lw=2, label='Silica')
+    t_sweep = []
 
-ax.set_xlabel('Insulator thickness (nm)')
-ax.set_ylabel('Effective index')
-ax.grid(True)
-ax.legend(loc='best', title='Refractive indices')
-plt.tight_layout()
-plt.show()
+    for thickness in dielectric_thicknesses:
+        # Newton-Raphson process, decreasing gap thickness
+        converged_propagation_constant = opt.newton(
+            func=plasmon.transcendential_trilayer_even_magnetic_field,
+            x0=wavenumber*plasmon.metal_dielectric_metal_sondergaard_narrow_approximation(
+                wavelength, thickness, dielectric_permittivity, metal_permittivity 
+            ),
+            args=(wavelength, thickness, dielectric_permittivity, metal_permittivity),
+            maxiter=int(1e6),
+            tol=1e3,
+            full_output=True
+        )[0]
+        t_sweep.append(converged_propagation_constant.real/wavenumber)
+
+    fig, ax = plt.subplots()
+    ax.plot(dielectric_thicknesses*1e9, t_sweep, label='Silica MIM')
+    ax.axhline(dielectric_refractive_index, color='C0', ls='--', lw=2, label='Silica')
+
+    ax.set_xlabel('Insulator thickness (nm)')
+    ax.set_ylabel('Effective index')
+    ax.legend(loc='best', title='Refractive indices')
+    plt.tight_layout()
+    plt.show()
