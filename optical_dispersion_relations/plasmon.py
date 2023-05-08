@@ -133,6 +133,11 @@ def transcendential_trilayer_even_magnetic_field(
     Returns
     -------
     residual to be minimized: float
+
+    Derivation
+    ----------
+    Maier SA. Plasmonics: Fundamentals and Applications, Chapter 2.3
+    ISBN: 978-0-387-37825-1
     """
     freespace_wavenumber = utilities.wavelength_to_wavenumber(wavelength)
 
@@ -175,6 +180,11 @@ def transcendential_trilayer_odd_magnetic_field(
     Returns
     -------
     residual to be minimized: float
+
+    Derivation
+    ----------
+    Maier SA. Plasmonics: Fundamentals and Applications, Chapter 2.3
+    ISBN: 978-0-387-37825-1
     """
     freespace_wavenumber = utilities.wavelength_to_wavenumber(wavelength)
 
