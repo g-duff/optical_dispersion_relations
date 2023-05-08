@@ -121,7 +121,7 @@ def transcendential_trilayer_even_magnetic_field(
     middle_layer_permittivity: 'float | complex',
     outer_layers_permittivity: 'float | complex',
 ) -> complex:
-    """Describes a metal-insulator-metal or insulator-metal-insulator symmetrical stack,
+    """Describes a metal-dielectric-metal or dielectric-metal-dielectric symmetrical stack,
     odd vector parity modes / the magnetic field is an even function.
 
     Parameters
@@ -168,7 +168,7 @@ def transcendential_trilayer_odd_magnetic_field(
     middle_layer_permittivity: 'float | complex',
     outer_layers_permittivity: 'float | complex',
 ) -> complex:
-    """Describes a metal-insulator-metal or insulator-metal-insulator symmetrical stack,
+    """Describes a metal-dielectric-metal or dielectric-metal-dielectric symmetrical stack,
     even vector parity modes / the magnetic field is an odd function.
 
     Parameters
