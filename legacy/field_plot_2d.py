@@ -1,12 +1,13 @@
-import numpy as np
-import scipy.constants as spc
-from scipy.interpolate import griddata
-import scipy.optimize as opt
+import cmath as cm
 import matplotlib
 import matplotlib.pyplot as plt
-import mim_dispersions as dsp
-import cmath as cm
+import numpy as np
+from numpy.lib import scimath
 import numpy.linalg as la
+from scipy.interpolate import griddata
+import scipy.optimize as opt
+
+from optical_dispersion_relations import plasmon
 
 font = {'size':16}
 matplotlib.rc('font', **font)
@@ -14,7 +15,7 @@ matplotlib.rc('font', **font)
 ## Wavelength Insulator RI and thickness
 wl = 750
 i_n = 1.45
-t_i = 20
+t_i = 600
 
 ## Metal refractive index and extinction coefficient
 m_wl, m_n, = np.genfromtxt('./material_dispersions/ag_n.txt',
@@ -40,7 +41,7 @@ i_eps = i_n**2
 # m_eps, i_eps = i_eps, m_eps
 
 ## Calcualte spp neff
-spp_n_eff = dsp.spp_neff(i_eps, m_eps)
+spp_n_eff = plasmon.surface_plasmon_polariton(i_eps, m_eps)
 spp_beta = spp_n_eff*k0
 
 # Calculate SPP field
@@ -52,12 +53,16 @@ ep = np.exp(-k1*(xp+t_i/2))*(np.exp(k1*(t_i/2)) + np.exp(-1*k1*(t_i/2)))
 em = np.exp(k2*(xm+t_i/2))*(np.exp(k1*(t_i/2)) + np.exp(-1*k1*(t_i/2)))
 
 # Newton-Raphson process, decreasing gap thickness
-beta = opt.newton(dsp.mim_disp, spp_beta, args=(k0, m_eps, i_eps, t_i, False),
+beta = opt.newton(
+        func=plasmon.transcendential_trilayer_even_magnetic_field,
+        x0=spp_beta, 
+        args=(wl, t_i, i_eps, m_eps),
 	maxiter=int(1e6), tol=1e-20)
 n_eff =  beta.real/k0
 
 # Calculate MIM field
-k1, k2 =  dsp.mim_disp(beta, k0, m_eps, i_eps, t_i, False, full_output=True)
+k1 = scimath.sqrt(beta**2 - m_eps*k0**2)
+k2 = scimath.sqrt(beta**2 - i_eps*k0**2)
 
 # Find the boundary conditions
 A = 1
@@ -85,6 +90,8 @@ mim_y = np.concatenate([e3, e2, e1])
 
 fig, ax = plt.subplots()
 cb = ax.pcolormesh(z_coords, x_coords, mim_y.real)
+ax.axhline(t_i/2, color='w')
+ax.axhline(-t_i/2, color='w')
 fig.colorbar(cb)
 plt.show()
 

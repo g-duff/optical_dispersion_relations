@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+
+* Transcendential equations for trilayer plasmonic dispersion relations:
+	* `transcendential_trilayer_even_magnetic_field`
+	* `transcendential_trilayer_odd_magnetic_field`
+
 ### Changed
 
 * BREAKING: Change DrudeLorentz default plasma frequency to 1.

@@ -1,10 +1,15 @@
 """Plasmonics Dispersion Relations"""
 
 import numpy as np
+from numpy.lib import scimath
+
+from optical_dispersion_relations import utilities
 
 
-def surface_plasmon_polariton(dielectric_permittivity: float,
-                              metal_permittivity: complex) -> complex:
+def surface_plasmon_polariton(
+    dielectric_permittivity: float,
+    metal_permittivity: complex
+) -> complex:
     """Exact surface plasmon dispersion relation for TM polarization.
     Surface plasmons only exist for TM polarization.
 
@@ -19,7 +24,7 @@ def surface_plasmon_polariton(dielectric_permittivity: float,
 
     Derivation
     ----------
-    Maier SA. Plasmonics: Fundamentals and Applications.
+    Maier SA. Plasmonics: Fundamentals and Applications, Chapter 2.2
     ISBN: 978-0-387-37825-1
     """
     numerator = dielectric_permittivity*metal_permittivity
@@ -28,10 +33,12 @@ def surface_plasmon_polariton(dielectric_permittivity: float,
     return effective_refractive_index
 
 
-def metal_insulator_metal_collin_approximation(dielectric_permittivity: float,
-                                               metal_permittivity: complex,
-                                               wavelength: float,
-                                               insulator_thickness: float) -> complex:
+def metal_insulator_metal_collin_approximation(
+    dielectric_permittivity: float,
+    metal_permittivity: complex,
+    wavelength: float,
+    insulator_thickness: float
+) -> complex:
     """Approximate metal-insulator-metal waveguide dispersion relation for TM polarization.
 
     Parameters
@@ -58,10 +65,12 @@ def metal_insulator_metal_collin_approximation(dielectric_permittivity: float,
     return effective_refractive_index
 
 
-def metal_insulator_metal_sondergaard_narrow_approximation(dielectric_permittivity: float,
-                                                           metal_permittivity: complex,
-                                                           wavelength: float,
-                                                           insulator_thickness: float) -> complex:
+def metal_insulator_metal_sondergaard_narrow_approximation(
+    dielectric_permittivity: float,
+    metal_permittivity: complex,
+    wavelength: float,
+    insulator_thickness: float
+) -> complex:
     """Approximate metal-insulator-metal waveguide dispersion relation for TM polarization.
 
     Parameters
@@ -78,8 +87,9 @@ def metal_insulator_metal_sondergaard_narrow_approximation(dielectric_permittivi
     Derivation
     ----------
     General properties of slow-plasmon resonant nanostructures: nano-antennas and resonators.
-    https://doi.org/10.1364/OE.15.010869"""
-    freespace_wavenumber = 2 * np.pi / wavelength
+    https://doi.org/10.1364/OE.15.010869
+    """
+    freespace_wavenumber = utilities.wavelength_to_wavenumber(wavelength)
 
     narrow_gap_limit_propagation_constant = -2 * dielectric_permittivity \
         / (insulator_thickness * metal_permittivity)
@@ -100,3 +110,97 @@ def metal_insulator_metal_sondergaard_narrow_approximation(dielectric_permittivi
         )
     effective_refractive_index = np.sqrt(effective_permittivity)
     return effective_refractive_index
+
+
+def transcendential_trilayer_even_magnetic_field(
+    propagation_constant: complex,
+    wavelength: float,
+    thickness: float,
+    middle_layer_permittivity: 'float | complex',
+    outer_layers_permittivity: 'float | complex',
+) -> complex:
+    """Describes a metal-insulator-metal or insulator-metal-insulator symmetrical stack,
+    odd vector parity modes / the magnetic field is an even function.
+
+    Parameters
+    ----------
+    propagation_constant: float, unkown - vary to find the system solutions
+    wavelength: float, at which the light propagates in free space
+    thickness: float, of the middle layer
+    middle_layer_permittivity: float or complex
+    outer_layers_permittivity: float or complex
+
+    Returns
+    -------
+    residual to be minimized: float
+
+    Derivation
+    ----------
+    Maier SA. Plasmonics: Fundamentals and Applications, Chapter 2.3
+    ISBN: 978-0-387-37825-1
+    """
+    freespace_wavenumber = utilities.wavelength_to_wavenumber(wavelength)
+
+    middle_layer_wavevector_perpendicular_component = scimath.sqrt(
+        propagation_constant**2 - middle_layer_permittivity*freespace_wavenumber**2
+    )
+    outer_layers_wavevector_perpendicular_component = scimath.sqrt(
+        propagation_constant**2 - outer_layers_permittivity*freespace_wavenumber**2
+    )
+
+    transcendential_function_value = np.tanh(
+        middle_layer_wavevector_perpendicular_component * thickness / 2
+    )
+
+    algebraic_function_value = -1 * \
+        (outer_layers_wavevector_perpendicular_component * middle_layer_permittivity) / \
+        (middle_layer_wavevector_perpendicular_component * outer_layers_permittivity)
+
+    return transcendential_function_value - algebraic_function_value
+
+
+def transcendential_trilayer_odd_magnetic_field(
+    propagation_constant: complex,
+    wavelength: float,
+    thickness: float,
+    middle_layer_permittivity: 'float | complex',
+    outer_layers_permittivity: 'float | complex',
+) -> complex:
+    """Describes a metal-insulator-metal or insulator-metal-insulator symmetrical stack,
+    even vector parity modes / the magnetic field is an odd function.
+
+    Parameters
+    ----------
+    propagation_constant: float, unkown - vary to find the system solutions
+    wavelength: float, at which the light propagates in free space
+    thickness: float, of the middle layer
+    middle_layer_permittivity: float or complex
+    outer_layers_permittivity: float or complex
+
+    Returns
+    -------
+    residual to be minimized: float
+
+    Derivation
+    ----------
+    Maier SA. Plasmonics: Fundamentals and Applications, Chapter 2.3
+    ISBN: 978-0-387-37825-1
+    """
+    freespace_wavenumber = utilities.wavelength_to_wavenumber(wavelength)
+
+    middle_layer_wavevector_perpendicular_component = scimath.sqrt(
+        propagation_constant**2 - middle_layer_permittivity*freespace_wavenumber**2
+    )
+    outer_layers_wavevector_perpendicular_component = scimath.sqrt(
+        propagation_constant**2 - outer_layers_permittivity*freespace_wavenumber**2
+    )
+
+    transcendential_function_value = np.tanh(
+        middle_layer_wavevector_perpendicular_component * thickness / 2
+    )
+
+    algebraic_function_value = -1 * \
+        (middle_layer_wavevector_perpendicular_component * outer_layers_permittivity) / \
+        (outer_layers_wavevector_perpendicular_component * middle_layer_permittivity)
+
+    return transcendential_function_value - algebraic_function_value

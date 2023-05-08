@@ -1,12 +1,12 @@
-import numpy as np
-import scipy.constants as spc
-from scipy.interpolate import griddata
-import scipy.optimize as opt
+import cmath as cm
 import matplotlib
 import matplotlib.pyplot as plt
-import mim_dispersions as dsp
-import cmath as cm
+import numpy as np
 import numpy.linalg as la
+from scipy.interpolate import griddata
+import scipy.optimize as opt
+
+from optical_dispersion_relations import plasmon
 
 font = {'size':16}
 matplotlib.rc('font', **font)
@@ -40,7 +40,7 @@ i_eps = i_n**2
 # m_eps, i_eps = i_eps, m_eps
 
 ## Calcualte spp neff
-spp_n_eff = dsp.spp_neff(i_eps, m_eps)
+spp_n_eff = plasmon.surface_plasmon_polariton(i_eps, m_eps)
 spp_beta = spp_n_eff*k0
 
 # Calculate SPP field
@@ -57,13 +57,18 @@ em = np.exp(k2*(xm+t_i/2))*(np.exp(k1*(t_i/2)) + np.exp(-1*k1*(t_i/2)))
 # plt.show()
 
 # Newton-Raphson process, decreasing gap thickness
-beta = opt.newton(dsp.mim_disp, spp_beta, args=(k0, m_eps, i_eps, t_i, True),
-	maxiter=int(1e6), tol=1e-30)
+beta = opt.newton(
+    func=plasmon.transcendential_trilayer_even_magnetic_field,
+    x0=spp_beta, 
+    args=(wl, t_i, i_eps, m_eps),
+	maxiter=int(1e6),
+    tol=1e-30,
+)
 n_eff =  beta.real/k0
 
 # Calculate MIM field
-k1, k2 =  dsp.mim_disp(beta, k0, m_eps, i_eps, t_i, True, full_output=True)
-
+k1 = cm.sqrt(beta**2 - k0**2*m_eps)
+k2 = cm.sqrt(beta**2 - k0**2*i_eps)
 x1 = np.arange(t_i/2, 3*t_i)
 x2 = np.arange(-t_i/2, t_i/2)
 x3 = np.arange(-3*t_i, -t_i/2)
