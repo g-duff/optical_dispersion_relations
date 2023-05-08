@@ -243,3 +243,30 @@ class TranscendentialTrilayerOdd(unittest.TestCase):
 
         # Then
         self.assertAlmostEqual(residual, 0, delta=0.01)
+
+    def test_thick_metal_approximates_surface_plasmon_polariton(self):
+        # Given
+        dielectric_permittivity = 1
+        metal_permittivity = -23.6+1.69j
+        wavelength = 775
+        thickness = 5 * wavelength
+
+        approx_refractive_index = plasmon.surface_plasmon_polariton(
+            dielectric_permittivity,
+            metal_permittivity,
+        )
+
+        wavenumber = utilities.wavelength_to_wavenumber(wavelength)
+        approx_propagation_constant = wavenumber * approx_refractive_index
+
+        # When
+        residual = plasmon.transcendential_trilayer_odd_magnetic_field(
+            approx_propagation_constant,
+            wavelength,
+            thickness,
+            metal_permittivity,
+            dielectric_permittivity,
+        )
+
+        # Then
+        self.assertAlmostEqual(residual, 0, delta=0.01)
