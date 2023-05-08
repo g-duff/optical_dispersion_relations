@@ -33,13 +33,14 @@ def surface_plasmon_polariton(
     return effective_refractive_index
 
 
-def metal_insulator_metal_collin_approximation(
+def metal_dielectric_metal_collin_approximation(
     dielectric_permittivity: float,
     metal_permittivity: complex,
     wavelength: float,
     insulator_thickness: float
 ) -> complex:
-    """Approximate metal-insulator-metal waveguide dispersion relation for TM polarization.
+    """Approximate dispersion relation for a finite-thickness dielectric slab
+    between two semi-infinite metal half-spaces. TM polarization.
 
     Parameters
     ----------

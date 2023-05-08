@@ -23,7 +23,7 @@ sondergaard_approximation_parameters = {
     'insulator_thickness': np.arange(1, 3000),
 }
 
-collin_approximation = plasmon.metal_insulator_metal_collin_approximation(
+collin_approximation = plasmon.metal_dielectric_metal_collin_approximation(
     **collin_approximation_parameters
 )
 

@@ -61,7 +61,7 @@ class MetalInsulatorMetalCollinApproximation(unittest.TestCase):
         expected_effective_refractive_index = 1
 
         # When
-        actual_effective_refractive_index = plasmon.metal_insulator_metal_collin_approximation(
+        actual_effective_refractive_index = plasmon.metal_dielectric_metal_collin_approximation(
             dielectric_permittivity=dielectric_permittivity,
             metal_permittivity=metal_permittivity,
             wavelength=wavelength,
@@ -83,7 +83,7 @@ class MetalInsulatorMetalCollinApproximation(unittest.TestCase):
         expected_effective_refractive_index = 2.355
 
         # When
-        actual_effective_refractive_index = plasmon.metal_insulator_metal_collin_approximation(
+        actual_effective_refractive_index = plasmon.metal_dielectric_metal_collin_approximation(
             dielectric_permittivity=dielectric_permittivity,
             metal_permittivity=metal_permittivity,
             wavelength=wavelength,
