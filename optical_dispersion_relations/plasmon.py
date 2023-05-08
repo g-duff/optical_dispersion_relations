@@ -124,7 +124,7 @@ def transcendential_trilayer_even_magnetic_field(
 
     Parameters
     ----------
-    propagation_constant: float, unkown - vary to find the system solutions.
+    propagation_constant: float, unkown - vary to find the system solutions
     wavelength: float, at which the light propagates in free space
     thickness: float, of the middle layer
     middle_layer_permittivity: float or complex
@@ -166,7 +166,7 @@ def transcendential_trilayer_odd_magnetic_field(
 
     Parameters
     ----------
-    propagation_constant: float, unkown - vary to find the system solutions.
+    propagation_constant: float, unkown - vary to find the system solutions
     wavelength: float, at which the light propagates in free space
     thickness: float, of the middle layer
     middle_layer_permittivity: float or complex
