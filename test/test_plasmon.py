@@ -153,12 +153,12 @@ class MetalInsulatorMetalSondergaardNarrowApproximation(unittest.TestCase):
 
 
 class TranscendentialMetalInsulatorMetalEven(unittest.TestCase):
-    """Test against fig 4 in
-    General properties of slow-plasmon resonant nanostructures: nano-antennas and resonators.
-    https://doi.org/10.1364/OE.15.010869
-    """
 
     def test_against_sondergaard_approximation(self):
+        """Test against fig 4 in
+        General properties of slow-plasmon resonant nanostructures: nano-antennas and resonators.
+        https://doi.org/10.1364/OE.15.010869
+        """
         # Given
         dielectric_permittivity = 1
         metal_permittivity = -23.6+1.69j
