@@ -152,7 +152,7 @@ class MetalInsulatorMetalSondergaardNarrowApproximation(unittest.TestCase):
                                places=2)
 
 
-class TranscendentialMetalInsulatorMetalEven(unittest.TestCase):
+class TranscendentialTrilayerEven(unittest.TestCase):
 
     def test_against_sondergaard_approximation(self):
         """Test against fig 4 in
