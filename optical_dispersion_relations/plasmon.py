@@ -24,7 +24,7 @@ def surface_plasmon_polariton(
 
     Derivation
     ----------
-    Maier SA. Plasmonics: Fundamentals and Applications.
+    Maier SA. Plasmonics: Fundamentals and Applications, Chapter 2.2
     ISBN: 978-0-387-37825-1
     """
     numerator = dielectric_permittivity*metal_permittivity
