@@ -70,16 +70,17 @@ def metal_dielectric_metal_sondergaard_narrow_approximation(
     dielectric_permittivity: float,
     metal_permittivity: complex,
     wavelength: float,
-    insulator_thickness: float
+    thickness: float
 ) -> complex:
-    """Approximate metal-insulator-metal waveguide dispersion relation for TM polarization.
+    """Approximate dispersion relation for a finite-thickness dielectric slab
+    between two semi-infinite metal half-spaces. TM polarization.
 
     Parameters
     ----------
     dielectric_permittivity: float or complex
     metal_permittivity: float or complex
     wavelength: float, in any unit of distance
-    insulator_thickness: float, in the same unit of distance as wavelength
+    thickness: float, of the insulatr layer in the same unit of distance as wavelength
 
     Returns
     -------
@@ -93,7 +94,7 @@ def metal_dielectric_metal_sondergaard_narrow_approximation(
     freespace_wavenumber = utilities.wavelength_to_wavenumber(wavelength)
 
     narrow_gap_limit_propagation_constant = -2 * dielectric_permittivity \
-        / (insulator_thickness * metal_permittivity)
+        / (thickness * metal_permittivity)
 
     narrow_gap_limit_effective_refractive_index = narrow_gap_limit_propagation_constant \
         / freespace_wavenumber

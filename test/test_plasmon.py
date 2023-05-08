@@ -107,7 +107,7 @@ class MetalInsulatorMetalSondergaardNarrowApproximation(unittest.TestCase):
         dielectric_permittivity = 1
         metal_permittivity = -23.6+1.69j
         wavelength = 775
-        insulator_thickness = np.array([100, 200, 300, 400, 500])
+        thickness = np.array([100, 200, 300, 400, 500])
 
         expected_effective_refractive_index = np.array([1.23403843+0.00811681j,
                                                         1.12252228+0.00437417j,
@@ -121,7 +121,7 @@ class MetalInsulatorMetalSondergaardNarrowApproximation(unittest.TestCase):
                 dielectric_permittivity=dielectric_permittivity,
                 metal_permittivity=metal_permittivity,
                 wavelength=wavelength,
-                insulator_thickness=insulator_thickness,
+                thickness=thickness,
             )
 
         # Then
@@ -143,7 +143,7 @@ class MetalInsulatorMetalSondergaardNarrowApproximation(unittest.TestCase):
                 dielectric_permittivity=dielectric_permittivity,
                 metal_permittivity=metal_permittivity,
                 wavelength=wavelength,
-                insulator_thickness=insulator_thickness,
+                thickness=insulator_thickness,
             )
 
         # Then
