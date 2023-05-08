@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Exact dispersion relations for MIM and IMI plasmonic systems:
 	* `transcendential_trilayer_even_magnetic_field`
+	* `transcendential_trilayer_odd_magnetic_field`
 
 ### Changed
 
