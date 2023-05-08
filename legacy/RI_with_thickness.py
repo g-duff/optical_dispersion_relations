@@ -35,19 +35,22 @@ m_k = griddata(m_wl, m_k, wl, method='cubic')
 m_eps = (m_n + 1j*m_k)**2
 i_eps = i_n**2
 
-## Calcualte spp neff
-spp_n_eff = plasmon.surface_plasmon_polariton(i_eps, m_eps)
-spp_beta = spp_n_eff*k0
-
-# Starting estimate for Newton-Raphson
-newt = spp_beta
 t_sweep = []
 
 for ti in t_i:
 	# Newton-Raphson process, decreasing gap thickness
-	newt = opt.newton(plasmon.transcendential_trilayer_even_magnetic_field, newt, args=(wl, ti, i_eps, m_eps),
-		maxiter=int(1e6), tol=1e3)
-	t_sweep.append(newt.real/k0)
+    propagation_constant_initial_estimate = k0*plasmon.metal_insulator_metal_sondergaard_narrow_approximation(
+        i_eps, m_eps, wl, ti
+    )
+    converged_propagation_constant = opt.newton(
+        func=plasmon.transcendential_trilayer_even_magnetic_field,
+        x0=propagation_constant_initial_estimate,
+        args=(wl, ti, i_eps, m_eps),
+        maxiter=int(1e6),
+        tol=1e3,
+        full_output=True
+    )[0]
+    t_sweep.append(converged_propagation_constant.real/k0)
 
 fig, ax = plt.subplots()
 ax.plot(t_i*1e9, t_sweep, label='Silica MIM')
