@@ -39,7 +39,7 @@ t_sweep = []
 
 for ti in t_i:
 	# Newton-Raphson process, decreasing gap thickness
-    propagation_constant_initial_estimate = k0*plasmon.metal_insulator_metal_sondergaard_narrow_approximation(
+    propagation_constant_initial_estimate = k0*plasmon.metal_dielectric_metal_sondergaard_narrow_approximation(
         i_eps, m_eps, wl, ti
     )
     converged_propagation_constant = opt.newton(

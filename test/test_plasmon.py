@@ -117,7 +117,7 @@ class MetalInsulatorMetalSondergaardNarrowApproximation(unittest.TestCase):
 
         # When
         actual_effective_refractive_index = \
-            plasmon.metal_insulator_metal_sondergaard_narrow_approximation(
+            plasmon.metal_dielectric_metal_sondergaard_narrow_approximation(
                 dielectric_permittivity=dielectric_permittivity,
                 metal_permittivity=metal_permittivity,
                 wavelength=wavelength,
@@ -139,7 +139,7 @@ class MetalInsulatorMetalSondergaardNarrowApproximation(unittest.TestCase):
 
         # When
         actual_effective_refractive_index = \
-            plasmon.metal_insulator_metal_sondergaard_narrow_approximation(
+            plasmon.metal_dielectric_metal_sondergaard_narrow_approximation(
                 dielectric_permittivity=dielectric_permittivity,
                 metal_permittivity=metal_permittivity,
                 wavelength=wavelength,
@@ -165,7 +165,7 @@ class TranscendentialTrilayerEven(unittest.TestCase):
         wavelength = 775
         thickness = 100
 
-        approx_refractive_index = plasmon.metal_insulator_metal_sondergaard_narrow_approximation(
+        approx_refractive_index = plasmon.metal_dielectric_metal_sondergaard_narrow_approximation(
             dielectric_permittivity,
             metal_permittivity,
             wavelength,

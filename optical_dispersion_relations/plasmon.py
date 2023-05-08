@@ -66,7 +66,7 @@ def metal_dielectric_metal_collin_approximation(
     return effective_refractive_index
 
 
-def metal_insulator_metal_sondergaard_narrow_approximation(
+def metal_dielectric_metal_sondergaard_narrow_approximation(
     dielectric_permittivity: float,
     metal_permittivity: complex,
     wavelength: float,

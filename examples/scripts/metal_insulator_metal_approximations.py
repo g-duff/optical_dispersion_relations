@@ -27,7 +27,7 @@ collin_approximation = plasmon.metal_dielectric_metal_collin_approximation(
     **collin_approximation_parameters
 )
 
-sondergaard_approximation = plasmon.metal_insulator_metal_sondergaard_narrow_approximation(
+sondergaard_approximation = plasmon.metal_dielectric_metal_sondergaard_narrow_approximation(
     **sondergaard_approximation_parameters
 )
 
