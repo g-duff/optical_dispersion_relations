@@ -51,21 +51,21 @@ class MetalInsulatorMetalCollinApproximation(unittest.TestCase):
     https://doi.org/10.1364/OE.15.004310
     """
 
-    def test_thick_insulator(self):
+    def test_thick_dielectric(self):
         # Given
         dielectric_permittivity = 1
         metal_permittivity = -50
-        insulator_thickness = 10
+        thickness = 10
         wavelength = 1
 
         expected_effective_refractive_index = 1
 
         # When
-        actual_effective_refractive_index = plasmon.metal_insulator_metal_collin_approximation(
+        actual_effective_refractive_index = plasmon.metal_dielectric_metal_collin_approximation(
+            wavelength=wavelength,
+            thickness=thickness,
             dielectric_permittivity=dielectric_permittivity,
             metal_permittivity=metal_permittivity,
-            wavelength=wavelength,
-            insulator_thickness=insulator_thickness,
         )
 
         # Then
@@ -73,21 +73,21 @@ class MetalInsulatorMetalCollinApproximation(unittest.TestCase):
                                actual_effective_refractive_index,
                                places=2)
 
-    def test_thin_insulator(self):
+    def test_thin_dielectric(self):
         # Given
         dielectric_permittivity = 1
         metal_permittivity = -50
-        insulator_thickness = 0.01
+        thickness = 0.01
         wavelength = 1
 
         expected_effective_refractive_index = 2.355
 
         # When
-        actual_effective_refractive_index = plasmon.metal_insulator_metal_collin_approximation(
+        actual_effective_refractive_index = plasmon.metal_dielectric_metal_collin_approximation(
+            wavelength=wavelength,
+            thickness=thickness,
             dielectric_permittivity=dielectric_permittivity,
             metal_permittivity=metal_permittivity,
-            wavelength=wavelength,
-            insulator_thickness=insulator_thickness,
         )
 
         # Then
@@ -107,7 +107,7 @@ class MetalInsulatorMetalSondergaardNarrowApproximation(unittest.TestCase):
         dielectric_permittivity = 1
         metal_permittivity = -23.6+1.69j
         wavelength = 775
-        insulator_thickness = np.array([100, 200, 300, 400, 500])
+        thickness = np.array([100, 200, 300, 400, 500])
 
         expected_effective_refractive_index = np.array([1.23403843+0.00811681j,
                                                         1.12252228+0.00437417j,
@@ -117,11 +117,11 @@ class MetalInsulatorMetalSondergaardNarrowApproximation(unittest.TestCase):
 
         # When
         actual_effective_refractive_index = \
-            plasmon.metal_insulator_metal_sondergaard_narrow_approximation(
+            plasmon.metal_dielectric_metal_sondergaard_narrow_approximation(
+                wavelength=wavelength,
+                thickness=thickness,
                 dielectric_permittivity=dielectric_permittivity,
                 metal_permittivity=metal_permittivity,
-                wavelength=wavelength,
-                insulator_thickness=insulator_thickness,
             )
 
         # Then
@@ -139,11 +139,11 @@ class MetalInsulatorMetalSondergaardNarrowApproximation(unittest.TestCase):
 
         # When
         actual_effective_refractive_index = \
-            plasmon.metal_insulator_metal_sondergaard_narrow_approximation(
+            plasmon.metal_dielectric_metal_sondergaard_narrow_approximation(
+                wavelength=wavelength,
+                thickness=insulator_thickness,
                 dielectric_permittivity=dielectric_permittivity,
                 metal_permittivity=metal_permittivity,
-                wavelength=wavelength,
-                insulator_thickness=insulator_thickness,
             )
 
         # Then
@@ -165,11 +165,11 @@ class TranscendentialTrilayerEven(unittest.TestCase):
         wavelength = 775
         thickness = 100
 
-        approx_refractive_index = plasmon.metal_insulator_metal_sondergaard_narrow_approximation(
-            dielectric_permittivity,
-            metal_permittivity,
+        approx_refractive_index = plasmon.metal_dielectric_metal_sondergaard_narrow_approximation(
             wavelength,
             thickness,
+            dielectric_permittivity,
+            metal_permittivity,
         )
 
         wavenumber = utilities.wavelength_to_wavenumber(wavelength)

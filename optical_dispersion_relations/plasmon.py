@@ -33,20 +33,21 @@ def surface_plasmon_polariton(
     return effective_refractive_index
 
 
-def metal_insulator_metal_collin_approximation(
+def metal_dielectric_metal_collin_approximation(
+    wavelength: float,
+    thickness: float,
     dielectric_permittivity: float,
     metal_permittivity: complex,
-    wavelength: float,
-    insulator_thickness: float
 ) -> complex:
-    """Approximate metal-insulator-metal waveguide dispersion relation for TM polarization.
+    """Approximate dispersion relation for a finite-thickness dielectric slab
+    between two semi-infinite metal half-spaces. TM polarization.
 
     Parameters
     ----------
+    wavelength, in any unit of distance: float
+    thickness, in the same unit of distance as wavelength: float
     dielectric_permittivity: float or complex
     metal_permittivity: float or complex
-    wavelength, in any unit of distance: float
-    insulator_thickness, in the same unit of distance as wavelength: float
 
     Returns
     -------
@@ -59,26 +60,27 @@ def metal_insulator_metal_collin_approximation(
     """
     surface_plasmon_coupling_term = wavelength * \
         np.sqrt(1-dielectric_permittivity/metal_permittivity) / \
-        (np.pi*insulator_thickness*np.sqrt(-1*metal_permittivity))
+        (np.pi*thickness*np.sqrt(-1*metal_permittivity))
     effective_refractive_index = np.sqrt(dielectric_permittivity) * \
         np.sqrt(1 + surface_plasmon_coupling_term)
     return effective_refractive_index
 
 
-def metal_insulator_metal_sondergaard_narrow_approximation(
+def metal_dielectric_metal_sondergaard_narrow_approximation(
+    wavelength: float,
+    thickness: float,
     dielectric_permittivity: float,
     metal_permittivity: complex,
-    wavelength: float,
-    insulator_thickness: float
 ) -> complex:
-    """Approximate metal-insulator-metal waveguide dispersion relation for TM polarization.
+    """Approximate dispersion relation for a finite-thickness dielectric slab
+    between two semi-infinite metal half-spaces. TM polarization.
 
     Parameters
     ----------
+    wavelength: float, in any unit of distance
+    thickness: float, of the insulatr layer in the same unit of distance as wavelength
     dielectric_permittivity: float or complex
     metal_permittivity: float or complex
-    wavelength: float, in any unit of distance
-    insulator_thickness: float, in the same unit of distance as wavelength
 
     Returns
     -------
@@ -92,7 +94,7 @@ def metal_insulator_metal_sondergaard_narrow_approximation(
     freespace_wavenumber = utilities.wavelength_to_wavenumber(wavelength)
 
     narrow_gap_limit_propagation_constant = -2 * dielectric_permittivity \
-        / (insulator_thickness * metal_permittivity)
+        / (thickness * metal_permittivity)
 
     narrow_gap_limit_effective_refractive_index = narrow_gap_limit_propagation_constant \
         / freespace_wavenumber
@@ -119,7 +121,7 @@ def transcendential_trilayer_even_magnetic_field(
     middle_layer_permittivity: 'float | complex',
     outer_layers_permittivity: 'float | complex',
 ) -> complex:
-    """Describes a metal-insulator-metal or insulator-metal-insulator symmetrical stack,
+    """Describes a metal-dielectric-metal or dielectric-metal-dielectric symmetrical stack,
     odd vector parity modes / the magnetic field is an even function.
 
     Parameters
@@ -166,7 +168,7 @@ def transcendential_trilayer_odd_magnetic_field(
     middle_layer_permittivity: 'float | complex',
     outer_layers_permittivity: 'float | complex',
 ) -> complex:
-    """Describes a metal-insulator-metal or insulator-metal-insulator symmetrical stack,
+    """Describes a metal-dielectric-metal or dielectric-metal-dielectric symmetrical stack,
     even vector parity modes / the magnetic field is an odd function.
 
     Parameters

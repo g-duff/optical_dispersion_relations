@@ -39,8 +39,8 @@ t_sweep = []
 
 for ti in t_i:
 	# Newton-Raphson process, decreasing gap thickness
-    propagation_constant_initial_estimate = k0*plasmon.metal_insulator_metal_sondergaard_narrow_approximation(
-        i_eps, m_eps, wl, ti
+    propagation_constant_initial_estimate = k0*plasmon.metal_dielectric_metal_sondergaard_narrow_approximation(
+        wl, ti, i_eps, m_eps 
     )
     converged_propagation_constant = opt.newton(
         func=plasmon.transcendential_trilayer_even_magnetic_field,

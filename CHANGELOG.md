@@ -16,6 +16,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 * BREAKING: Change DrudeLorentz default plasma frequency to 1.
+* BREAKING: Change function names and parameter orders:
+    * `metal_insulator_metal_collin_approximation` -> `metal_dielectric_metal_collin_approximation`
+    * `metal_insulator_metal_sondergaard_narrow_approximation` -> `metal_dielectric_metal_sondergaard_narrow_approximation`
 
 ### Fixed
 
