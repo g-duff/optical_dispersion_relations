@@ -120,6 +120,18 @@ def transcendential_trilayer_even_magnetic_field(
 ) -> complex:
     """Describes a metal-insulator-metal or insulator-metal-insulator symmetrical stack,
     odd vector parity modes / the magnetic field is an even function.
+
+    Parameters
+    ----------
+    propagation_constant: float, unkown - vary to find the system solutions.
+    wavelength: float, at which the light propagates in free space
+    thickness: float, of the middle layer
+    middle_layer_permittivity: float or complex
+    outer_layers_permittivity: float or complex
+
+    Returns
+    -------
+    residual to be minimized: float
     """
     freespace_wavenumber = utilities.wavelength_to_wavenumber(wavelength)
 
