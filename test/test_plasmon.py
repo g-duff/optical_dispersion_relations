@@ -62,10 +62,10 @@ class MetalInsulatorMetalCollinApproximation(unittest.TestCase):
 
         # When
         actual_effective_refractive_index = plasmon.metal_dielectric_metal_collin_approximation(
-            dielectric_permittivity=dielectric_permittivity,
-            metal_permittivity=metal_permittivity,
             wavelength=wavelength,
             thickness=thickness,
+            dielectric_permittivity=dielectric_permittivity,
+            metal_permittivity=metal_permittivity,
         )
 
         # Then
@@ -84,10 +84,10 @@ class MetalInsulatorMetalCollinApproximation(unittest.TestCase):
 
         # When
         actual_effective_refractive_index = plasmon.metal_dielectric_metal_collin_approximation(
-            dielectric_permittivity=dielectric_permittivity,
-            metal_permittivity=metal_permittivity,
             wavelength=wavelength,
             thickness=thickness,
+            dielectric_permittivity=dielectric_permittivity,
+            metal_permittivity=metal_permittivity,
         )
 
         # Then

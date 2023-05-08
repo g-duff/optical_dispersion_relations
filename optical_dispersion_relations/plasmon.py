@@ -34,20 +34,20 @@ def surface_plasmon_polariton(
 
 
 def metal_dielectric_metal_collin_approximation(
+    wavelength: float,
+    thickness: float,
     dielectric_permittivity: float,
     metal_permittivity: complex,
-    wavelength: float,
-    thickness: float
 ) -> complex:
     """Approximate dispersion relation for a finite-thickness dielectric slab
     between two semi-infinite metal half-spaces. TM polarization.
 
     Parameters
     ----------
-    dielectric_permittivity: float or complex
-    metal_permittivity: float or complex
     wavelength, in any unit of distance: float
     thickness, in the same unit of distance as wavelength: float
+    dielectric_permittivity: float or complex
+    metal_permittivity: float or complex
 
     Returns
     -------
