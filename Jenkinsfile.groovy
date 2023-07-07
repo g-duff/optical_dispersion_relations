@@ -41,8 +41,9 @@ pipeline {
 				script {
 					if (currentBuild.currentResult == 'SUCCESS') {
 						withCredentials([string(credentialsId: 'PyPIToken', variable: 'TOKEN')]) {
-							sh '''. ./.venv/bin/activate
-							python3 -m build
+							sh '''
+							make dist
+							. ./.venv/bin/activate
 							python3 -m pip install --upgrade twine
 							python3 -m twine upload dist/* \
 								--username __token__ \

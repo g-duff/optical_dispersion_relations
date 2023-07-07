@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## [v0.3.0](https://github.com/g-duff/optical_dispersion_relations/releases/v0.3.0)
+
 ### Added
 
 * Transcendential equations for trilayer plasmonic dispersion relations:

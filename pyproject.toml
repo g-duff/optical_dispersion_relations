@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 dependencies = ["numpy>=1.23.4"]
 name = "optical_dispersion_relations"
-version = "0.2.0"
+version = "0.3.0"
 authors = [
   { name="George Duffett" },
 ]
