@@ -60,11 +60,6 @@ pipeline {
 
 	post {
 
-		always {
-			sh "make clean"
-		}
-
-
 		success {
 			script {
 				notifyGitHubBuildStatus('optical_dispersion_relations', 'success')
@@ -81,6 +76,10 @@ pipeline {
 			script {
 				notifyGitHubBuildStatus('optical_dispersion_relations', 'error')
 			}
+		}
+
+		cleanup {
+			sh "make clean"
 		}
 
 	}
